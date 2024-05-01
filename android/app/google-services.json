@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "586801802275",
+    "project_id": "fier-aomely-app",
+    "storage_bucket": "fier-aomely-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586801802275:android:f9389eec79ce764f4f1596",
+        "android_client_info": {
+          "package_name": "com.example.apphomely"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBik-3AqkKcBcIGXkfzw0P9Nc8grzb2oFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
