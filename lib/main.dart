@@ -3,9 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'firebase_options.dart';
+import 'layout/homeApp.dart';
 import 'models/test.dart';
+import 'modules/account_screen/account_screen.dart';
 import 'modules/login_screen/login_screen.dart';
 import 'modules/register_screen/register_screen.dart';
+import 'modules/setting/setting_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +64,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:LoginScreen(),
+      home:HomeScreen(),
       //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
     );
   }

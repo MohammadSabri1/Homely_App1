@@ -7,11 +7,15 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('jhio;oguog'),),
       drawer: Drawer(
 
         child: Column(
           children:<Widget> [
-            DrawerHeader(child: CircleAvatar()),
+            DrawerHeader(child: CircleAvatar(
+              backgroundImage: AssetImage('assets/homely logo.png'),
+            )
+            ),
 
           ],
         ),
