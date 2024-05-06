@@ -19,96 +19,100 @@ class _Homely_HomeState extends State<Homely_Home> {
         appBar: AppBar(),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+          child:ListView(
             children: [
-              Container(
-                width: double.infinity,
-                child: Image(image: AssetImage('assets/shale2.jpeg')),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    'منذ يومين',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                    ),
+                  Container(
+                    width: double.infinity,
+                    child: Image(image: AssetImage('assets/shale2.jpeg')),
                   ),
-                  Spacer(),
-                  Text(
-                    'شقه',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                    ),
+                  SizedBox(
+                    height: 10.0,
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text(
-                '8000 ج.م/شهر',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    ' مدينه واصل كمبوندات الشروق مدينة الشروق القاهرة',
-                    style: TextStyle(
-                      fontSize: 10.0,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        'منذ يومين',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        'شقه',
+                        style: TextStyle(
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.location_on_outlined,
-                    size: 15,
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    '8000 ج.م/شهر',
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        ' مدينه واصل كمبوندات الشروق مدينة الشروق القاهرة',
+                        style: TextStyle(
+                          fontSize: 10.0,
+                        ),
+                      ),
+                      Icon(
+                        Icons.location_on_outlined,
+                        size: 15,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 150.0,
+                        decoration: const BoxDecoration(
+                          color: defaultColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        child: TextButton(
+                            onPressed: () {
+                              WhatsApp(context: context);
+                              setState(() {});
+                            },
+                            child: Icon(
+                              Icons.chat,
+                              color: Colors.white,
+                            )),
+                      ),
+                      Container(
+                        width: 150.0,
+                        decoration: const BoxDecoration(
+                          color: defaultColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        ),
+                        child: TextButton(
+                            onPressed: () {
+                            },
+                            child: Icon(
+                              Icons.call,
+                              color: Colors.white,
+                            )),
+                      ),
+                    ],
                   )
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 150.0,
-                    decoration: const BoxDecoration(
-                      color: defaultColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    ),
-                    child: TextButton(
-                        onPressed: () {
-                          WhatsApp(context: context);
-                          setState(() {});
-                        },
-                        child: Icon(
-                          Icons.chat,
-                          color: Colors.white,
-                        )),
-                  ),
-                  Container(
-                    width: 150.0,
-                    decoration: const BoxDecoration(
-                      color: defaultColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    ),
-                    child: TextButton(
-                        onPressed: () {
-                        },
-                        child: Icon(
-                          Icons.call,
-                          color: Colors.white,
-                        )),
-                  ),
-                ],
-              )
             ],
           ),
         ));
