@@ -22,14 +22,14 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await cacheHelper.init();
-  Widget widget;
-   uid = cacheHelper.getData(key: 'uid') ;
-  if(uid != null){
-    widget = HomeScreen();
-  }else{
-    widget=LoginScreen();
-  }
+  // await cacheHelper.init();
+  // Widget widget;
+  //  uid = cacheHelper.getData(key: 'uid') ;
+  // if(uid != null){
+  //   widget = HomeScreen();
+  // }else{
+  //   widget=LoginScreen();
+  // }
   runApp(const MyApp());
 }
 
