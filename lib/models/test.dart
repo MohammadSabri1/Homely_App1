@@ -1,3 +1,5 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,10 +35,23 @@ class register extends StatelessWidget {
       create: (BuildContext context) => HomelyRegisterCubit(),
       child: BlocConsumer<HomelyRegisterCubit, HomelyRegisterStates>(
           listener: (context, state) {
-        if (state is HomelyCreateUseSuccessState) {
-          pushAndRemoveUntil(context, Homely_Home());
-        }
-      }, builder: (context, state) {
+            if(state is HomelyRegisterErrorState){
+              showToast(
+                  text: state.error,
+                  state: toastState.error
+              );
+              // AwesomeDialog(
+              //   context: context,
+              //   dialogType: DialogType.error,
+              //   animType: AnimType.rightSlide,
+              //   title: ' خطاء',
+              //   desc: 'خطاء في الايميل او كلمه ',
+              // ).show();
+            }
+            if (state is HomelyCreateUseSuccessState) {
+              pushAndRemoveUntil(context, Homely_Home());
+            }
+          }, builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: const Text(
@@ -114,11 +129,11 @@ class register extends StatelessWidget {
                           prefixIcon: Icons.calendar_month_outlined,
                           onTab: () {
                             showDatePicker(
-                                    //chenage color from theem color
-                                    context: context,
-                                    firstDate: DateTime.parse('1960-01-01'),
-                                    lastDate: DateTime.now(),
-                                    initialDate: DateTime.parse('2002-01-01'))
+                              //chenage color from theem color
+                                context: context,
+                                firstDate: DateTime.parse('1960-01-01'),
+                                lastDate: DateTime.now(),
+                                initialDate: DateTime.parse('2002-01-01'))
                                 .then((value) {
                               //used package intel pub &insert
                               print(DateFormat.yMMMd().format(value!));
@@ -217,13 +232,12 @@ class register extends StatelessWidget {
                             return null;
                           },
                           label: 'كلمة المرور',
-                          prefixIcon: Icons.lock_outline,
-                          suffix: passShow
+                          suffix:passShow
                               ? Icons.visibility_off_outlined
                               : Icons.visibility_outlined,
-                          obscureText: passShow,
+                          obscureText: HomelyRegisterCubit.get(context).isPassword,
                           suffixPressed: () {
-                            passShow = !passShow;
+                            HomelyRegisterCubit.get(context).ChangePassword();
                           }),
                       // SizedBox(
                       //   height: 20.0,
@@ -254,26 +268,32 @@ class register extends StatelessWidget {
                       const SizedBox(
                         height: 30.0,
                       ),
-                      defaultButton(
-                          background: Colors.deepOrangeAccent,
-                          function: () {
-                            if (formKey.currentState!.validate()) {
-                              HomelyRegisterCubit.get(context).userRegister(
-                                firstName: FristNameController.text,
-                                lastName: LastNameController.text,
-                                email: EmailController.text,
-                                gender: GenderController.text,
-                                password: passwordController.text,
-                                city: cityController.text,
-                                street: streetController.text,
-                                date: DateController.text,
-                                cover: coveController.text,
-                                phone: PhoneController.text,
-                              );
-                              // pushAndRemoveUntil(context,Homely_Home() );
-                            }
-                          },
-                          text: 'انشاء حساب'),
+
+                      ConditionalBuilder(
+                          condition: state is! HomelyRegisterLoadingState,
+                          builder:(context)=>defaultButton(
+                              background: Colors.deepOrangeAccent,
+                              function: () {
+                                if (formKey.currentState!.validate()) {
+                                  HomelyRegisterCubit.get(context).userRegister(
+                                    firstName: FristNameController.text,
+                                    lastName: LastNameController.text,
+                                    email: EmailController.text,
+                                    gender: GenderController.text,
+                                    password: passwordController.text,
+                                    city: cityController.text,
+                                    street: streetController.text,
+                                    date: DateController.text,
+                                    cover: coveController.text,
+                                    phone: PhoneController.text,
+                                  );
+                                  // pushAndRemoveUntil(context,Homely_Home() );
+                                }
+                              },
+                              text: 'انشاء حساب'),
+                          fallback: (context)=>Center(child: CircularProgressIndicator(),)
+                      ),
+
 
                       SizedBox(
                         height: 15.0,

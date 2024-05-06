@@ -1,8 +1,9 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+String uid = '';
 
 Widget  defaultTextFormField({
   required TextEditingController controller,
@@ -65,9 +66,7 @@ Widget defaultButton( {
         ),
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          radius,
-        ),
+        borderRadius: BorderRadius.circular(20.0),
         color: background,
       ),
     );
@@ -87,3 +86,35 @@ void pushAndRemoveUntil(context,Widget
 );
 
 final String applicationName='homly';
+void showToast({
+  required String text,
+  required toastState state,
+}){
+  Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 5,
+      backgroundColor:choostToastColor(state),
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
+}
+enum toastState {success,error,warning}
+Color? choostToastColor(toastState state)
+{
+  Color color;
+  switch(state)
+  {
+    case toastState.success:
+      color=Colors.green;
+      break;
+    case toastState.warning:
+      color=Colors.amber;
+      break;
+    case toastState.error:
+      color=Colors.red;
+      break;
+  }
+  return color;
+}
