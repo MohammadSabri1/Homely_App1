@@ -10,6 +10,7 @@ class homelyUsersModle{
    String? city;
    String? cover;
    String? street;
+   String? uid;
    String? image;
    homelyUsersModle({
      this.firstName,
@@ -23,6 +24,7 @@ class homelyUsersModle{
      this.gender,
      this.password,
      this.image,
+     this.uid,
 });
    homelyUsersModle.formJson(Map<String,dynamic>josn){
      email=josn['email'];
@@ -36,6 +38,7 @@ class homelyUsersModle{
      gender=josn['gender'];
      date=josn['date'];
      image=josn['image'];
+     uid=josn['uid'];
 
    }
    Map<String,dynamic>toMap()
@@ -51,6 +54,9 @@ class homelyUsersModle{
      'cover':cover,
      'street':street,
      'gender':gender,
+     'uid':uid,
+       "image":image
+
    };
    }
 }

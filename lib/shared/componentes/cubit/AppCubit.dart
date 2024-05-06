@@ -40,26 +40,28 @@ class HomelyCubit extends Cubit<HomelyStates>
     emit(HomelyBottomNaveState());
 
   }
- late homelyUsersModle Model;
-  void getUserDada(){
-    emit(HomelyGetUserLoadingState());
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then((value){
-      print(value.data());
-      // userModel=homelyUsersModle.formJson(value.data()! );
-      emit(HomelyGetUserSuccessState());
+  homelyUsersModle? Model ;
 
-      print('=============heloo');
-
-    }).catchError((error){
-      print(error.toString());
-      emit(HomelyGetUserErrorState(error.toString()));
-    }
-    );
-  }
+  // void getUserDada(){
+  //   emit(HomelyGetUserLoadingState());
+  //   FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(uid)
+  //       .get()
+  //       .then((value){
+  //         // value.data()
+  //     print(value.data());
+  //     Model=homelyUsersModle.formJson(value.data()! );
+  //     emit(HomelyGetUserSuccessState());
+  //
+  //     print('=============heloo');
+  //
+  //   }).catchError((error){
+  //     print(error.toString());
+  //     emit(HomelyGetUserErrorState(error.toString()));
+  //   }
+  //   );
+  // }
 
 
 

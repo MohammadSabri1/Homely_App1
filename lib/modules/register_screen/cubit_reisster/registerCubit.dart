@@ -41,7 +41,8 @@ FirebaseAuth.instance.createUserWithEmailAndPassword(
     street: street,
     date: date,
     gender: gender,
-    password: password
+    password: password,
+      uid:value.user!.uid ,
   );
 }).catchError((e){
   emit(HomelyRegisterErrorState(e.toString()));
@@ -58,6 +59,7 @@ void createUser({
   required String street,
   required String cover,
   required String phone,
+  required String uid,
 }){
   homelyUsersModle model= homelyUsersModle(
     date: date,
@@ -70,12 +72,13 @@ void createUser({
     city: city,
     cover:cover,
     gender: gender,
+    uid: uid,
     image:'https://img.freepik.com/premium-photo/computer-programmer-digital-avatar-generative-ai_934475-9327.jpg?w=740'
 
   );
   FirebaseFirestore.instance
       .collection('users')
-      .doc(firstName)
+      .doc(uid)
       .set(model.toMap())
       .then((value) {
     emit(HomelyCreateUseSuccessState());

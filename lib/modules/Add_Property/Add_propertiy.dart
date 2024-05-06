@@ -64,13 +64,6 @@ class _AddScreenState extends State<AddScreen> {
           builder: (context,state){
           return Scaffold(
           // appBar: AppBar(
-          //   title: Text(
-          //     'اضافه عقار',
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.bold,
-          //       fontSize: 20.0
-          //     ),
-          //   ),
           //   centerTitle: true,
           //   leading:(
           //       IconButton(
@@ -92,15 +85,6 @@ class _AddScreenState extends State<AddScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Row(
-              mainAxisAlignment:MainAxisAlignment.end,
-              children: [
-                IconButton(
-                    onPressed: (){
-                      navigatorTo(context, HomeScreen());
-                    }, icon: Icon(Icons.arrow_back))
-              ],
-            ),
           const Center(
           child: Text(
           'اضافه عقار',

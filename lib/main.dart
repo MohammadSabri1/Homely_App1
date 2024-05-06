@@ -1,3 +1,4 @@
+import 'package:apphomely/modules/profile/profile_screen.dart';
 import 'package:apphomely/shared/cach_celper/cache_helper.dart';
 import 'package:apphomely/shared/componentes/States/AppStates.dart';
 import 'package:apphomely/shared/componentes/componetes.dart';
@@ -22,14 +23,14 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await cacheHelper.init();
-  Widget widget;
-   uid = cacheHelper.getData(key: 'uid') ;
-  if(uid != null){
-    widget = HomeScreen();
-  }else{
-    widget=LoginScreen();
-  }
+   // await cacheHelper.init();
+  // Widget widget;
+  //  uid = cacheHelper.getData(key:'uid');
+  // if(uid != null){
+  //   widget = HomeScreen();
+  // }else{
+  //   widget=LoginScreen();
+  // }
   runApp(const MyApp());
 }
 
@@ -60,7 +61,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (BuildContext context) => HomelyCubit()..getUserDada(),
+    // ..getUserDada()
+        create: (BuildContext context) => HomelyCubit(),
         child: BlocConsumer<HomelyCubit,HomelyStates>(
             listener: (context,state){
 
@@ -103,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:SearchScreen(),
+                home:HomeScreen(),
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );
             }

@@ -22,7 +22,7 @@ class profileScreen extends StatelessWidget {
      },
       builder: (BuildContext context, HomelyStates state)
       {
-        var userModel= HomelyCubit.get(context).Model;
+        // var userModel= HomelyCubit.get(context).Model;
         return Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -79,7 +79,11 @@ class profileScreen extends StatelessWidget {
 
                                 ),
                               ),
-                              SizedBox(width: 7.0,),
+                              Text(' - ',
+                                style: TextStyle(fontSize: 18.0,
+
+                                ),
+                              ),
                               Text('الشروق',
                                 style: TextStyle(fontSize: 18.0,
 
