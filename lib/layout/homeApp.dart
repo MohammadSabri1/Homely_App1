@@ -21,9 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (BuildContext context) => HomelyCubit(),
-        child: BlocConsumer<HomelyCubit, HomelyStates>(
+    return BlocConsumer<HomelyCubit, HomelyStates>(
         listener: ( BuildContext context, HomelyStates state)
     {},
     builder: (BuildContext context,HomelyStates state)
@@ -198,7 +196,22 @@ class HomeScreen extends StatelessWidget {
           Icon(Icons.local_post_office_outlined),
         ],
       ),
-
+      SizedBox(height: 16,),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          MaterialButton(
+            onPressed:(){
+            },child: Text('التقيم',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16
+            ),
+          ),
+          ),
+          Icon(Icons.star_border_outlined)
+        ],
+      ),
       SizedBox(height: 16,),
     Row(
     mainAxisAlignment: MainAxisAlignment.end,
@@ -245,7 +258,7 @@ class HomeScreen extends StatelessWidget {
 
     );
     }
-    ),
     );
+
     }
   }

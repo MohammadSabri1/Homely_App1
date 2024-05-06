@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../layout/home_screen.dart';
+import '../../../models/omelt_model.dart';
 import '../../../modules/Add_Property/Add_propertiy.dart';
-import '../../../modules/setting/profile_screen.dart';
+import '../../../modules/profile/profile_screen.dart';
 import '../States/AppStates.dart';
+import '../componetes.dart';
 
 class HomelyCubit extends Cubit<HomelyStates>
 {
@@ -38,5 +40,27 @@ class HomelyCubit extends Cubit<HomelyStates>
     emit(HomelyBottomNaveState());
 
   }
+ late homelyUsersModle Model;
+  void getUserDada(){
+    emit(HomelyGetUserLoadingState());
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((value){
+      print(value.data());
+      // userModel=homelyUsersModle.formJson(value.data()! );
+      emit(HomelyGetUserSuccessState());
+
+      print('=============heloo');
+
+    }).catchError((error){
+      print(error.toString());
+      emit(HomelyGetUserErrorState(error.toString()));
+    }
+    );
+  }
+
+
 
 }

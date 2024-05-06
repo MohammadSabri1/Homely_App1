@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-String uid = '';
+
 
 Widget  defaultTextFormField({
   required TextEditingController controller,
@@ -118,3 +118,5 @@ Color? choostToastColor(toastState state)
   }
   return color;
 }
+
+String uid ='';

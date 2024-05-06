@@ -21,7 +21,8 @@ class HomelyLoginCubit extends Cubit<HomelyLoginStates>
         email: email,
         password: password
     ).then((value){
-      emit(HomelyLoginSuccessState());
+      print(value.user!.uid);
+      emit(HomelyLoginSuccessState(value.user!.uid));
 
     }).catchError((error){
       emit(HomelyLoginErrorState(error.toString()));

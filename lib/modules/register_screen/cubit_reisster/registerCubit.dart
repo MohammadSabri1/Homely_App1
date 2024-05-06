@@ -42,10 +42,7 @@ FirebaseAuth.instance.createUserWithEmailAndPassword(
     date: date,
     gender: gender,
     password: password
-
-
   );
-  emit(HomelyRegisterSuccessState());
 }).catchError((e){
   emit(HomelyRegisterErrorState(e.toString()));
 });
@@ -73,6 +70,7 @@ void createUser({
     city: city,
     cover:cover,
     gender: gender,
+    image:'https://img.freepik.com/premium-photo/computer-programmer-digital-avatar-generative-ai_934475-9327.jpg?w=740'
 
   );
   FirebaseFirestore.instance
