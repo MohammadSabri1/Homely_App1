@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
     builder: (context)=>IconButton(
 
     onPressed: () => Scaffold.of(context).openDrawer(),
-    icon: Icon(Icons.person),),
+    icon: Icon(Icons.settings_outlined),),
     ),
     actions: [
     IconButton(
@@ -61,10 +61,11 @@ class HomeScreen extends StatelessWidget {
     backgroundColor: Colors.grey[100],
     child: Column(
     children:<Widget> [
-    DrawerHeader(child: CircleAvatar(
+    DrawerHeader(child:
+    CircleAvatar(
     radius: 100,
     backgroundImage: AssetImage('assets/homely logo.png'),
-    )
+    ),
     ),
     SizedBox(height:10.0,),
     Padding(

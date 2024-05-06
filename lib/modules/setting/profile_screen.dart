@@ -1,8 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({super.key});
+import '../../shared/componentes/componetes.dart';
+import '../login_screen/login_screen.dart';
+
+class profileScreen extends StatelessWidget {
+  const profileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +93,42 @@ class SettingScreen extends StatelessWidget {
                 color: Colors.black,
                 width: double.infinity,
                 height: 1.0,
+              ),
+              SizedBox(height: 30.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  MaterialButton(
+                    onPressed:()async{
+                      GoogleSignIn googleSignIn=GoogleSignIn();
+                      googleSignIn.disconnect();
+                      await FirebaseAuth.instance.signOut();
+                      navigatorTo(context, LoginScreen());
+                    },child: Text('تسجيل خروج',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                    ),
+                  ),
+                  ),
+                  Icon(Icons.login_outlined)
+                ],
+              ),
+              SizedBox(height: 16.0,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  MaterialButton(
+                    onPressed:(){
+                    },child: Text('حذف الحساب',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                    ),
+                  ),
+                  ),
+                  Icon(Icons.delete_outline_outlined)
+                ],
               ),
 
             ],

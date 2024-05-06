@@ -8,7 +8,7 @@ import 'models/test.dart';
 import 'modules/account_screen/account_screen.dart';
 import 'modules/login_screen/login_screen.dart';
 import 'modules/register_screen/register_screen.dart';
-import 'modules/setting/setting_screen.dart';
+import 'modules/setting/profile_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
