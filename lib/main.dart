@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'firebase_options.dart';
+import 'interFace/welcome.dart';
 import 'modules/search/search_screen.dart';
 
 void main() async{
@@ -97,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:HomeScreen(),
+                home:welcome(),
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );
             }
