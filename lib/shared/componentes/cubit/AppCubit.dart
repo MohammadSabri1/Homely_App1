@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../layout/home_screen.dart';
 import '../../../models/omelt_model.dart';
 import '../../../modules/Add_Property/Add_propertiy.dart';
@@ -60,7 +63,19 @@ class HomelyCubit extends Cubit<HomelyStates>
   //   }
   //   );
   // }
+  File? imageProfile ;
+  var picker =ImagePicker();
+  Future <void>changeProfileImage()async{
+    final pickfile =await picker.pickImage(source: ImageSource.gallery);
+    if(pickfile!=null){
+      imageProfile=File(pickfile.path);
+      emit(HomelyGetProfileImageSuccessState());
+    }else{
+      print('لم يتم تحديد صوره');
+      emit(HomelyGetProfileImageErrorState());
+    }
 
+  }
 
 
 }

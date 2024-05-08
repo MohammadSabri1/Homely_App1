@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
+import '../modules/account_screen/account_screen.dart';
 import '../shared/styles/Styles.dart';
 
 class Homely_Home extends StatefulWidget {
@@ -103,6 +104,12 @@ class _Homely_HomeState extends State<Homely_Home> {
                         ),
                         child: TextButton(
                             onPressed: () {
+                            //  WhatsAppButton(phoneNumber: '+201014856391', message: 'welcome to homely',);
+                              WhatsAppButton(
+                                phoneNumber: "+201223570789",
+                                message: "مرحبا، كيف يمكنني مساعدتك",
+                              );
+
                             },
                             child: Icon(
                               Icons.call,

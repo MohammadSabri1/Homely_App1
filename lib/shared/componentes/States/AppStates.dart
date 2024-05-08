@@ -8,3 +8,7 @@ class HomelyGetUserErrorState extends HomelyStates{
   late final String error;
   HomelyGetUserErrorState(this.error);
 }
+
+
+class HomelyGetProfileImageSuccessState extends HomelyStates{}
+class HomelyGetProfileImageErrorState extends HomelyStates{}

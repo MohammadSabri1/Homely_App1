@@ -1,25 +1,18 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class AccountScreen extends StatelessWidget {
-  const AccountScreen({super.key});
+class WhatsAppButton {
+  final String phoneNumber;
+  final String message;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('jhio;oguog'),),
-      drawer: Drawer(
+  WhatsAppButton({required this.phoneNumber, required this.message});
 
-        child: Column(
-          children:<Widget> [
-            DrawerHeader(child: CircleAvatar(
-              backgroundImage: AssetImage('assets/homely logo.png'),
-            )
-            ),
-
-          ],
-        ),
-      ),
-    );
+  Future<void> launchWhatsApp() async {
+    String encodedMessage = Uri.encodeFull(message);
+    String url = "whatsapp://send?phone=$phoneNumber&text=$encodedMessage";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

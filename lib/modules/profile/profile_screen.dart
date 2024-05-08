@@ -124,11 +124,28 @@ class profileScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     MaterialButton(
-                      onPressed:()async{
-                        GoogleSignIn googleSignIn=GoogleSignIn();
-                        googleSignIn.disconnect();
-                        await FirebaseAuth.instance.signOut();
-                        navigatorTo(context, LoginScreen());
+                      onPressed:(){
+                        showDialog(
+                            context: context,
+                            builder: (context){
+                              return AlertDialog(
+                                title:Icon(Icons.warning),
+                                content: Text('هل تريد تسجيل خروج'),
+                                actions: [
+                                  TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  },child:Text('لا') ),
+                                  TextButton(onPressed:()async{
+                                    GoogleSignIn googleSignIn=GoogleSignIn();
+                                    googleSignIn.disconnect();
+                                    await FirebaseAuth.instance.signOut();
+                                    navigatorTo(context, LoginScreen());
+                                  },child:Text('نعم'),),
+
+                                ],
+                              );
+                            }
+                        );
                       },child: Text('تسجيل خروج',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -145,6 +162,22 @@ class profileScreen extends StatelessWidget {
                   children: [
                     MaterialButton(
                       onPressed:(){
+                        showDialog(
+                            context: context,
+                            builder: (context){
+                              return AlertDialog(
+                                title:Icon(Icons.warning),
+                                content: Text('هل تريد حذف الحساب'),
+                                actions: [
+                                  TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  },child:Text('لا') ),
+                                  TextButton(onPressed: (){},child:Text('نعم'),),
+
+                                ],
+                              );
+                            }
+                        );
                       },child: Text('حذف الحساب',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
