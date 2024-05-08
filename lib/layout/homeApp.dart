@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../modules/search/search_screen.dart';
-import '../meshcode/meshcode.dart';
 import '../modules/login_screen/login_screen.dart';
 import '../shared/componentes/States/AppStates.dart';
 import '../shared/componentes/componetes.dart';

@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/componentes/componetes.dart';
-
 class editProfileScreen extends StatelessWidget {
    editProfileScreen({super.key});
   var formKey = GlobalKey<FormState>();

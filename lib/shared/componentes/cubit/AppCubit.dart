@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +6,6 @@ import '../../../models/omelt_model.dart';
 import '../../../modules/Add_Property/Add_propertiy.dart';
 import '../../../modules/profile/profile_screen.dart';
 import '../States/AppStates.dart';
-import '../componetes.dart';
 
 class HomelyCubit extends Cubit<HomelyStates>
 {

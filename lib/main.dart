@@ -1,7 +1,4 @@
-import 'package:apphomely/modules/profile/profile_screen.dart';
-import 'package:apphomely/shared/cach_celper/cache_helper.dart';
 import 'package:apphomely/shared/componentes/States/AppStates.dart';
-import 'package:apphomely/shared/componentes/componetes.dart';
 import 'package:apphomely/shared/componentes/cubit/AppCubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,12 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'firebase_options.dart';
-import 'layout/homeApp.dart';
-import 'models/test.dart';
-import 'modules/account_screen/account_screen.dart';
-import 'modules/login_screen/login_screen.dart';
-import 'modules/profile/edit-profile-screen.dart';
-import 'modules/register_screen/register_screen.dart';
 import 'modules/search/search_screen.dart';
 
 void main() async{
@@ -23,9 +14,9 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   // await cacheHelper.init();
+  // await cacheHelper.init();
   // Widget widget;
-  //  uid = cacheHelper.getData(key:'uid');
+  //  uid = cacheHelper.getData(key: 'uid') ;
   // if(uid != null){
   //   widget = HomeScreen();
   // }else{
@@ -105,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:HomeScreen(),
+                home:SearchScreen(),
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );
             }
