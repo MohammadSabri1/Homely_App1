@@ -1,3 +1,4 @@
+import 'package:apphomely/layout/homeApp.dart';
 import 'package:apphomely/shared/componentes/States/AppStates.dart';
 import 'package:apphomely/shared/componentes/cubit/AppCubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -96,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:SearchScreen(),
+                home:HomeScreen(),
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );
             }

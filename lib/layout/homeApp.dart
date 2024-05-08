@@ -107,6 +107,63 @@ class HomeScreen extends StatelessWidget {
     children: [
     MaterialButton(
     onPressed:(){
+
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height:200.0 ,
+            color: Colors.grey[150],
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon:Icon(Icons.done),
+                      ),
+
+                      Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon:Icon(Icons.close),
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: Text(
+                      'تواصل معنا',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('+201223570789',
+                            style:TextStyle(
+                              fontSize: 16.0
+                            ) ,),
+                          SizedBox(width: 10.0,),
+                          Icon(Icons.call)
+                        ],
+                      )
+                ],
+              ),
+            ),
+
+          );
+        },
+      );
     },child: Text('تواصل معنا',
     style: TextStyle(
     fontWeight: FontWeight.bold,
@@ -216,11 +273,28 @@ class HomeScreen extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
     MaterialButton(
-    onPressed:()async{
-    GoogleSignIn googleSignIn=GoogleSignIn();
-    googleSignIn.disconnect();
-    await FirebaseAuth.instance.signOut();
-    navigatorTo(context, LoginScreen());
+    onPressed:(){
+      showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+              title:Icon(Icons.warning),
+              content: Text('هل تريد تسجيل خروج'),
+              actions: [
+                TextButton(onPressed: (){
+                  Navigator.pop(context);
+                },child:Text('لا') ),
+                TextButton(onPressed:()async{
+                  GoogleSignIn googleSignIn=GoogleSignIn();
+                  googleSignIn.disconnect();
+                  await FirebaseAuth.instance.signOut();
+                  navigatorTo(context, LoginScreen());
+                },child:Text('نعم'),),
+
+              ],
+            );
+          }
+      );
     },child: Text('تسجيل خروج',
     style: TextStyle(
     fontWeight: FontWeight.bold,
@@ -237,6 +311,22 @@ class HomeScreen extends StatelessWidget {
     children: [
     MaterialButton(
     onPressed:(){
+      showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+              title:Icon(Icons.warning),
+              content: Text('هل تريد حذف الحساب'),
+              actions: [
+                TextButton(onPressed: (){
+                  Navigator.pop(context);
+                },child:Text('لا') ),
+                TextButton(onPressed: (){},child:Text('نعم'),),
+
+              ],
+            );
+          }
+      );
     },child: Text('حذف الحساب',
     style: TextStyle(
     fontWeight: FontWeight.bold,
