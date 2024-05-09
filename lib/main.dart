@@ -12,6 +12,7 @@ import 'interFace/welcome.dart';
 import 'layout/admin_home/admin_home-screen.dart';
 import 'layout/home_screen.dart';
 import 'layout/testHome.dart';
+import 'modules/login_screen/login_screen.dart';
 import 'modules/search/search_screen.dart';
 
 void main() async{
@@ -101,7 +102,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:welcome(),
+                home:LoginScreen(),
 
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );

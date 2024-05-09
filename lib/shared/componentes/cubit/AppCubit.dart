@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:apphomely/shared/styles/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,15 +26,15 @@ class HomelyCubit extends Cubit<HomelyStates>
   int currentIndex=2;
   List<BottomNavigationBarItem>Bottomitem=[
     BottomNavigationBarItem(
-        icon:Icon(Icons.account_circle_outlined),
+        icon:Icon(IconBroken.Profile),
         label: 'Profile'
     ),
     BottomNavigationBarItem(
-        icon:Icon(Icons.add_box_outlined),
+        icon:Icon(IconBroken.Plus),
         label: 'add'
     ),
     BottomNavigationBarItem(
-        icon:Icon(Icons.home_outlined),
+        icon:Icon(IconBroken.Home),
         label: 'home'
     ),
   ];

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../shared/componentes/componetes.dart';
+import '../../shared/styles/icons.dart';
 import '../login_screen/login_screen.dart';
 
 class profileScreen extends StatelessWidget {
@@ -103,7 +104,7 @@ class profileScreen extends StatelessWidget {
                               IconButton.outlined(
                                   onPressed:(){
                                     navigatorTo(context, editProfileScreen());
-                                  }, icon: Icon(Icons.edit)
+                                  }, icon: Icon(IconBroken.Edit)
                               )
                             ],
                           )
@@ -184,7 +185,7 @@ class profileScreen extends StatelessWidget {
                       ),
                     ),
                     ),
-                    Icon(Icons.login_outlined)
+                    Icon(IconBroken.Logout)
                   ],
                 ),
                 // SizedBox(height: 16.0,),
@@ -216,7 +217,7 @@ class profileScreen extends StatelessWidget {
                       ),
                     ),
                     ),
-                    Icon(Icons.delete_outline_outlined)
+                    Icon(IconBroken.Delete)
                   ],
                 ),
 

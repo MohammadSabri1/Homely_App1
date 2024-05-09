@@ -1,5 +1,6 @@
 import 'package:apphomely/modules/login_screen/cubit_login_screen/LoginCubit.dart';
 import 'package:apphomely/modules/login_screen/cubit_login_screen/States_login_screen/LoginStates.dart';
+import 'package:apphomely/shared/styles/icons.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -107,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return null;
                           },
                           label: 'اسم المستخدم',
-                          prefixIcon: Icons.person_2_outlined,
+                          prefixIcon: IconBroken.Profile,
                         ),
                         SizedBox(
                           height: 20.0,
@@ -122,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               return null;
                             },
                             label: 'كلمة المرور',
-                            prefixIcon: Icons.lock_outline,
+                            prefixIcon: IconBroken.Lock,
                             suffix:passShow?Icons.visibility_off_outlined:Icons.visibility_outlined,
                             obscureText: passShow,
                             suffixPressed: () {
@@ -137,19 +138,30 @@ class _LoginScreenState extends State<LoginScreen> {
                         ConditionalBuilder(
                             condition: state is! HomelyLoginLoadingState,
                             builder: (context)=>Center(
-                              child: defaultButton(
-                                  width:150.0,
-                                  function: (){
-                                    if(formKey.currentState!.validate() )
-                                    {
-                                      HomelyLoginCubit.get(context).userLogin(
-                                          email:UserController.text ,
-                                          password: passwordController.text
-                                      );
+                              child: Stack(
+                                  alignment: AlignmentDirectional.centerStart,
+                                children:[
+                                  defaultButton(
+                                    width:200.0,
+                                    function: (){
+                                      if(formKey.currentState!.validate() )
+                                      {
+                                        HomelyLoginCubit.get(context).userLogin(
+                                            email:UserController.text ,
+                                            password: passwordController.text
+                                        );
 
-                                    }
-                                  },
-                                  text: 'تسجيل دخول'),
+                                      }
+                                    },
+                                    text: 'تسجيل دخول'
+                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Icon(IconBroken.Login,color: Colors.white,),
+                                  ),
+
+                              ]
+                              ),
                             ),
                             fallback: (context)=>Center(child: CircularProgressIndicator(),)
                         ),

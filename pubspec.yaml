@@ -109,6 +109,10 @@ flutter:
     - family: Cairo_font
       fonts:
         - asset: assets/fonts/Cairo-font.ttf
+
+    - family: IconBroken
+      fonts:
+        - asset: icons/icons.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

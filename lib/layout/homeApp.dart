@@ -1,3 +1,4 @@
+import 'package:apphomely/shared/styles/icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
     builder: (context)=>IconButton(
 
     onPressed: () => Scaffold.of(context).openDrawer(),
-    icon: Icon(Icons.settings_outlined),),
+    icon: Icon(IconBroken.Setting),),
     ),
     actions: [
     IconButton(
@@ -43,14 +44,14 @@ class HomeScreen extends StatelessWidget {
     Navigator.push(context,
     MaterialPageRoute(builder: (context) =>SearchScreen()));
     },
-    icon: Icon(Icons.search),
+    icon: Icon(IconBroken.Search),
     )],
     ) ,
     body:cubit.Screens[cubit.currentIndex],
     bottomNavigationBar:BottomNavigationBar(
     currentIndex: cubit.currentIndex,
     items:cubit.Bottomitem,
-    selectedItemColor: Colors.orangeAccent,
+    selectedItemColor: Colors.deepOrange,
     onTap:(index) {
     cubit.changeBottomBar(index);
     },
@@ -99,7 +100,7 @@ class HomeScreen extends StatelessWidget {
     ),
     ),
     ),
-    Icon(Icons.language_outlined)
+    Icon(IconBroken.Location)
     ],
     ),
     SizedBox(height: 16,),
@@ -125,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon:Icon(Icons.done),
+                        icon:Icon(IconBroken.Shield_Done),
                       ),
 
                       Spacer(),
@@ -133,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        icon:Icon(Icons.close),
+                        icon:Icon(IconBroken.Close_Square),
                       ),
                     ],
                   ),
@@ -155,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                               fontSize: 16.0
                             ) ,),
                           SizedBox(width: 10.0,),
-                          Icon(Icons.call)
+                          Icon(IconBroken.Call_Missed)
                         ],
                       )
                 ],
@@ -172,7 +173,7 @@ class HomeScreen extends StatelessWidget {
     ),
     ),
     ),
-    Icon(Icons.call)
+    Icon(IconBroken.Call)
     ],
     ),
     SizedBox(height: 16,),
@@ -199,7 +200,7 @@ class HomeScreen extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  icon:Icon(Icons.done),
+                                  icon:Icon(IconBroken.Shield_Done),
                                 ),
 
                                 Spacer(),
@@ -207,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  icon:Icon(Icons.close),
+                                  icon:Icon(IconBroken.Close_Square),
                                 ),
                               ],
                             ),
@@ -231,7 +232,7 @@ class HomeScreen extends StatelessWidget {
                                 return null;
                               },
                               label: 'مقترحات و شكوي',
-                              prefixIcon: Icons.local_post_office_outlined,
+                              prefixIcon: IconBroken.Message
                             ),
                           ],
                         ),
@@ -250,7 +251,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.local_post_office_outlined),
+          Icon(IconBroken.Chat),
         ],
       ),
       SizedBox(height: 16,),
@@ -340,7 +341,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.star_border_outlined)
+          Icon(IconBroken.Star)
         ],
       ),
 
@@ -378,7 +379,7 @@ class HomeScreen extends StatelessWidget {
     ),
     ),
     ),
-    Icon(Icons.login_outlined)
+    Icon(IconBroken.Logout)
     ],
     ),
     SizedBox(height: 16.0,),
@@ -410,7 +411,7 @@ class HomeScreen extends StatelessWidget {
     ),
     ),
     ),
-    Icon(Icons.delete_outline_outlined)
+    Icon(IconBroken.Delete)
     ],
     ),
 

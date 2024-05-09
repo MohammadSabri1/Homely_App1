@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:apphomely/shared/styles/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -260,7 +261,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                                         onPressed: () {
                                         },
                                         child: Icon(
-                                          Icons.chat,
+                                          IconBroken.Chat,
                                           color: Colors.white,
                                         )),
                                   ),
@@ -275,7 +276,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                                         onPressed: () {
                                         },
                                         child: Icon(
-                                          Icons.call,
+                                          IconBroken.Call,
                                           color: Colors.white,
                                         )),
                                   ),

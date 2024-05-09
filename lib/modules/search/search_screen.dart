@@ -1,3 +1,4 @@
+import 'package:apphomely/shared/styles/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class SearchScreen extends StatelessWidget {
                     borderSide: BorderSide.none, // لا حاجة لحدود
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  prefixIcon: Icon(Icons.search), // الأيقونة التي تريد عرضها على اليسار
+                  prefixIcon: Icon(IconBroken.Search), // الأيقونة التي تريد عرضها على اليسار
                 ),
               ),
             ],
@@ -285,7 +286,7 @@ class SearchScreen extends StatelessWidget {
             },
           );
         },
-        child: Icon(Icons.add,color: Colors.white,),
+        child: Icon(IconBroken.Plus,color: Colors.white,),
       ),
     );
   }

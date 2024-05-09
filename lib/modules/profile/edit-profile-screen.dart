@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../shared/componentes/componetes.dart';
+import '../../shared/styles/icons.dart';
 class editProfileScreen extends StatelessWidget {
    editProfileScreen({super.key});
   var formKey = GlobalKey<FormState>();
@@ -69,11 +70,15 @@ class editProfileScreen extends StatelessWidget {
                               ):FileImage(profileImage),
                             ),
                           ),
-                          IconButton(
-                              onPressed:
-                                  (){
-                                HomelyCubit.get(context).changeProfileImage();
-                                  }, icon: Icon(Icons.camera_alt_outlined))
+                          CircleAvatar(
+                            backgroundColor:Colors.grey[150] ,
+                            radius: 20.0,
+                            child: IconButton(
+                                onPressed:
+                                    (){
+                                  HomelyCubit.get(context).changeProfileImage();
+                                    }, icon: Icon(IconBroken.Camera)),
+                          )
                         ],
                       ),
                     ),
