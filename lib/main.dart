@@ -101,7 +101,8 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:HomeScreen(),
+                home:welcome(),
+
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );
             }

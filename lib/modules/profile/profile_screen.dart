@@ -170,7 +170,7 @@ class profileScreen extends StatelessWidget {
                                     GoogleSignIn googleSignIn=GoogleSignIn();
                                     googleSignIn.disconnect();
                                     await FirebaseAuth.instance.signOut();
-                                    navigatorTo(context, LoginScreen());
+                                    pushAndRemoveUntil(context, LoginScreen());
                                   },child:Text('نعم'),),
 
                                 ],
