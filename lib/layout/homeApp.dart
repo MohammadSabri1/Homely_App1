@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../modules/search/search_screen.dart';
 import '../modules/login_screen/login_screen.dart';
@@ -257,17 +258,92 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           MaterialButton(
-            onPressed:(){
-            },child: Text('التقيم',
-            style: TextStyle(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+
+                    title: Text('تقييم التطبيق'),
+                    content:
+
+                    RatingBar.builder(
+                        initialRating: 3,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          switch (index) {
+                            case 0:
+                              return Icon(
+                                Icons.sentiment_very_dissatisfied,
+                                color: Colors.red,
+                              );
+                            case 1:
+                              return Icon(
+                                Icons.sentiment_dissatisfied,
+                                color: Colors.redAccent,
+                              );
+                            case 2:
+                              return Icon(
+                                Icons.sentiment_neutral,
+                                color: Colors.amber,
+                              );
+                            case 3:
+                              return Icon(
+                                Icons.sentiment_satisfied,
+                                color: Colors.lightGreen,
+                              );
+                            case 4:
+                              return Icon(
+                                Icons.sentiment_very_satisfied,
+                                color: Colors.green,
+                              );
+                            default:
+                              return Container();
+                          }
+                        },
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                           },
+                    ),
+                    // RatingBar.builder(
+                    //   initialRating: 3,
+                    //   minRating: 1,
+                    //   direction: Axis.horizontal,
+                    //   allowHalfRating: true,
+                    //   itemCount: 5,
+                    //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                    //   itemBuilder: (context, _) => Icon(
+                    //     Icons.star,
+                    //     color: Colors.deepOrange,
+                    //   ),
+                    //   onRatingUpdate: (rating) {
+                    //     print(rating);
+                    //   },
+                    // ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('ارسال'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text(
+              'التقييم',
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16
+                fontSize: 16,
+              ),
             ),
-          ),
           ),
           Icon(Icons.star_border_outlined)
         ],
       ),
+
       SizedBox(height: 16,),
     Row(
     mainAxisAlignment: MainAxisAlignment.end,
@@ -351,3 +427,5 @@ class HomeScreen extends StatelessWidget {
 
     }
   }
+
+

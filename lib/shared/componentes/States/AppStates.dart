@@ -12,3 +12,6 @@ class HomelyGetUserErrorState extends HomelyStates{
 
 class HomelyGetProfileImageSuccessState extends HomelyStates{}
 class HomelyGetProfileImageErrorState extends HomelyStates{}
+
+class HomelySmoothStarRatingState extends HomelyStates{}
+

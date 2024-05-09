@@ -119,7 +119,38 @@ class profileScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 1.0,
                 ),
-                SizedBox(height: 30.0,),
+                SizedBox(height: 20.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    MaterialButton(
+                      onPressed:(){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Column(
+                                  children: [
+                                    Text(
+                                        'سوف يتم الواصل معك قريبا'
+                                    ),
+                                    SizedBox(height: 8.0,),
+                                    Text(
+                                        "شكرا لستخدامك Homely "
+                                    ),
+                                  ],
+                                )
+                            )
+                        );
+                      },child: Text('طلب الغاء الايجار',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16
+                      ),
+                    ),
+                    ),
+                    Icon(Icons.cancel_outlined)
+                  ],
+                ),
+                // SizedBox(height: 16,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -156,7 +187,7 @@ class profileScreen extends StatelessWidget {
                     Icon(Icons.login_outlined)
                   ],
                 ),
-                SizedBox(height: 16.0,),
+                // SizedBox(height: 16.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
