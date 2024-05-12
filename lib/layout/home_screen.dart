@@ -193,7 +193,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
                           side:
-                          BorderSide(color: Colors.grey, width: 2.0),
+                          BorderSide(color: Colors.deepOrange, width: 2.0),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Padding(

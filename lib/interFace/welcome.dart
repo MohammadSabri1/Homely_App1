@@ -79,7 +79,7 @@ class welcome extends StatelessWidget {
                          borderRadius: BorderRadius.circular(50.0),
                        ),
                        child: Icon(
-                         IconBroken.User,size: 60.0,color: Colors.white,
+                         IconBroken.Profile,size: 60.0,color: Colors.white,
                        ),
 
                      ),
