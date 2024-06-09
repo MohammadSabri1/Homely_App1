@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../layout/admin_home/admin_home-screen.dart';
 import '../../../shared/componentes/componetes.dart';
+import '../../admin_home/admin_home-screen.dart';
 
 class LoginAdminScreen extends StatefulWidget {
   LoginAdminScreen({super.key});

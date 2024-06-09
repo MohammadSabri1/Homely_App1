@@ -43,12 +43,12 @@ class SearchScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   filled: true,
-                  fillColor: Colors.grey.withOpacity(0.2), // لون الخلفية بالرمادي مع تعتيم بنسبة 20%
+                  fillColor: Colors.grey.withOpacity(0.2),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide.none, // لا حاجة لحدود
+                    borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  prefixIcon: Icon(IconBroken.Search), // الأيقونة التي تريد عرضها على اليسار
+                  prefixIcon: Icon(IconBroken.Search),
                 ),
               ),
             ],

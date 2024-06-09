@@ -1,11 +1,10 @@
 import 'package:apphomely/modules/login_screen/login_screen.dart';
 import 'package:apphomely/shared/componentes/componetes.dart';
-import 'package:apphomely/shared/styles/icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../modules/login_screen/login-admin/login-Admin_screen.dart';
-
 class welcome extends StatelessWidget {
   const welcome({super.key});
 
@@ -39,7 +38,7 @@ class welcome extends StatelessWidget {
                   navigatorTo(context, LoginScreen());
           
                 },child:Image.asset(
-                'assets/user.png',
+                'images/user77.jpg',
                 height: 120.0,
                 width: 120,
               ) ,
@@ -55,7 +54,7 @@ class welcome extends StatelessWidget {
                 onPressed: (){
                   navigatorTo(context, LoginAdminScreen());
                 },child:Image.asset(
-                'assets/admin2.png',
+                'images/admin77.jpg',
                 height: 120.0,
                 width: 120,
               ) ,
@@ -68,28 +67,6 @@ class welcome extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 15.0,),
-                   InkWell(
-                     onTap: (){},
-                     child: Container(
-                       width: 120,
-                       height: 120,
-                       decoration: BoxDecoration(
-                           color: Colors.deepOrange,
-                         borderRadius: BorderRadius.circular(50.0),
-                       ),
-                       child: Icon(
-                         IconBroken.Profile,size: 60.0,color: Colors.white,
-                       ),
-
-                     ),
-                   ),
-                SizedBox(height: 15.0,),
-                Text('مستخدم',
-                  style:TextStyle(fontSize: 14.0,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
               ],
             ),
           ),

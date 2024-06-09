@@ -1,4 +1,4 @@
-class AddPorpertyModle {
+class adminAddPorpertyModle {
   String? floor;
   String? space;
   String? view;
@@ -10,10 +10,12 @@ class AddPorpertyModle {
   String? street;
   String? detail;
   String? person;
-  List<String>? images;
+  String? type;
+  String? date;
   String? imageFolderName;
+  List<String>? images; // added images field
 
-  AddPorpertyModle({
+  adminAddPorpertyModle({
     this.floor,
     this.space,
     this.view,
@@ -25,11 +27,13 @@ class AddPorpertyModle {
     this.detail,
     this.person,
     this.price,
+    this.type,
+    this.date,
+    this.imageFolderName,
     required this.images, // added images parameter
-    this.imageFolderName, // added folderName parameter
   });
 
-  AddPorpertyModle.fromJson(Map<String, dynamic> json) {
+  adminAddPorpertyModle.fromJson(Map<String, dynamic> json) {
     cover = json['cover'];
     city = json['city'];
     street = json['street'];
@@ -41,25 +45,29 @@ class AddPorpertyModle {
     floor = json['floor'];
     person = json['person'];
     detail = json['detail'];
-    images = json['images'].cast<String>();
+    type = json['type'];
+    date = json['date'];
     imageFolderName = json['imageFolderName'];
+    images = json['images'].cast<String>(); // added images field
   }
 
   Map<String, dynamic> toMap() {
     return {
       'cover': cover,
       'city': city,
-      'treet': street,
+      'street': street,
       'price': price,
       'rom': rom,
       'pathRom': pathRom,
       'view': view,
-      'pace': space,
+      'space': space,
       'floor': floor,
       'person': person,
       'detail': detail,
       'images': images, // added images field
-      'imageFolderName': imageFolderName, // added folderName field
+      'type': type,
+      'date': date,
+      'imageFolderName': imageFolderName,
     };
   }
 }

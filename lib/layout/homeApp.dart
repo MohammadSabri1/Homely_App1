@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
     children:<Widget> [
     DrawerHeader(child:
     CircleAvatar(
-    radius: 100,
+    radius: 60.0,
     backgroundImage: AssetImage('assets/homely logo.png'),
     ),
     ),

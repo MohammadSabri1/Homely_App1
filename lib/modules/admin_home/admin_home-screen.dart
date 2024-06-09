@@ -1,8 +1,13 @@
+import 'dart:core';
 import 'dart:io';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import '../../shared/componentes/componetes.dart';
+import 'cubit/admin_cubit.dart';
+import 'cubit/admin_states.dart';
 
 class adminHomeScreen extends StatefulWidget {
    adminHomeScreen({super.key});
@@ -12,25 +17,6 @@ class adminHomeScreen extends StatefulWidget {
 }
 
 class _adminHomeScreenState extends State<adminHomeScreen> {
-  List<XFile> _images = [];
-
-  Future<void> _pickImages() async {
-    final _picker = ImagePicker();
-    final _pickedFiles = await _picker.pickMultiImage();
-    // Limit the number of images to select
-    if (_pickedFiles != null) {
-      setState(() {
-        _images.addAll(_pickedFiles.map((file) => file));
-      });
-    }
-  }
-
-  void imagePicker()async{
-    var image=await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      _images=image as List<XFile>;
-    });
-  }
 
   TextEditingController cityController =TextEditingController();
 
@@ -53,13 +39,29 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
   TextEditingController floorController =TextEditingController();
 
   TextEditingController personController =TextEditingController();
-
+  TextEditingController DateController =TextEditingController();
+  TextEditingController typeController =TextEditingController();
   final pageViewController =ScrollController();
-
   var formKey=GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (BuildContext context) =>amainAddPropertyCubit(),
+        child:BlocConsumer<amainAddPropertyCubit,amainAddPropertyStates>(
+        listener:(context,state){
+      if (state is amainAddPropertySuccessState) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('تم نشر العقار بنجاح'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        // pushAndRemoveUntil(context,HomeScreen());
+      }
+    },
+    builder: (context,state){
+    var cubit=amainAddPropertyCubit.get(context);
     return DefaultTabController(
       length: 3,
       child: Scaffold (
@@ -163,19 +165,38 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                           ),
                         ),
                         SizedBox(height: 10,),
-                        Container(
-                          width:150.0,
-                          child: defaultTextFormField(
-                            controller:priceController,
-                            type:TextInputType.number,
-                            validator: (price){
-                              if (price!.isEmpty){
-                                return'برجاء ادخل السعر';
-                              }
-                              return null;
-                            },
-                            label: 'السعر',
-                          ),
+                        Row(
+                          children: [
+                            Container(
+                              width:150.0,
+                              child: defaultTextFormField(
+                                controller:priceController,
+                                type:TextInputType.number,
+                                validator: (price){
+                                  if (price!.isEmpty){
+                                    return'برجاء ادخل السعر';
+                                  }
+                                  return null;
+                                },
+                                label: 'السعر',
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              width:150.0,
+                              child: defaultTextFormField(
+                                controller:typeController,
+                                type:TextInputType.text,
+                                validator: (price){
+                                  if (price!.isEmpty){
+                                    return'برجاء ادخل نوع العقار';
+                                  }
+                                  return null;
+                                },
+                                label: 'نوع العقار',
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 10,),
                         Text(
@@ -290,19 +311,53 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                           ),
                         ),
                         SizedBox(height: 10,),
-                        Container(
-                          width:150,
-                          child: defaultTextFormField(
-                            controller:personController,
-                            type: TextInputType.number,
-                            validator: (value){
-                              if (value!.isEmpty){
-                                return'برجاء ادخل عدد الافراد';
-                              }
-                              return null;
-                            },
-                            label: 'الافراد',
-                          ),
+                        Row(
+                          children: [
+                            Container(
+                              width:150,
+                              child: defaultTextFormField(
+                                controller:personController,
+                                type: TextInputType.number,
+                                validator: (value){
+                                  if (value!.isEmpty){
+                                    return'برجاء ادخل عدد الافراد';
+                                  }
+                                  return null;
+                                },
+                                label: 'الافراد',
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              width:150,
+                              child: defaultTextFormField(
+                                  controller: DateController,
+                                  type: TextInputType.datetime,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'برجاء ادخل تاريخ الملاد';
+                                    }
+                                    return null;
+                                  },
+                                  label: 'تاريخ الملاد',
+                                  prefixIcon: Icons.calendar_month_outlined,
+                                  onTab: () {
+                                    showDatePicker(
+                                      //chenage color from theem color
+                                        context: context,
+                                        firstDate: DateTime.now(),
+                                        lastDate: DateTime.now(),
+                                        initialDate: DateTime.now(),)
+                                        .then((value) {
+                                      //used package intel pub &insert
+                                      print(DateFormat.yMMMd().format(value!));
+                                      DateController.text =
+                                          DateFormat.yMMMd().format(value);
+                                    });
+                                    ;
+                                  }),
+                            ),
+                          ],
                         ), //المافظه
                         SizedBox(height: 10,),
                         Row(
@@ -310,7 +365,7 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                           children: [
                             IconButton(
                               onPressed: () async {
-                                _pickImages();
+                                 cubit.pickImages();
                               },
 
                               icon: Icon(Icons.add_photo_alternate_outlined,size: 30,),
@@ -333,17 +388,17 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                             controller: pageViewController,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: _images.length,
+                            itemCount:cubit.listImagesGallery.length,
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 10.0,
                               mainAxisSpacing: 20.0,
                             ),
                             itemBuilder: (context, index) {
-                              if (_images[index].path != null) {
+                              if (cubit.listImagesGallery[index].path != null) {
                                 return Stack(  // Use another Stack for image and delete button
                                   children: [
-                                    Image.file(File(_images[index].path)),
+                                    Image.file(File(cubit.listImagesGallery[index].path)),
                                     Positioned(  // Position the delete button in bottom right corner
                                       top: 1.0,  // Adjust spacing as needed
 
@@ -353,8 +408,9 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                                         color: Colors.orange,  // Customize delete button color
                                         onPressed: () {
                                           setState(() {
-                                            _images.removeAt(index);  // Remove image from list
+                                            cubit.listImagesGallery.removeAt(index);
                                           });
+                                          // Remove image from list
                                         },
                                       ),
                                     ),
@@ -389,12 +445,42 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                           ),
                         ),
                         SizedBox(height: 20.0,),
-                        defaultButton(
-                          background: Colors.deepOrangeAccent,
-                          function: (){
-                          },
+                        ConditionalBuilder(
+                            condition: state is! amainAddPropertyImageLoadingState,
+                            builder:(context)=>defaultButton(
+                                background: Colors.deepOrangeAccent,
+                                function: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('برجاء الانتظار يتم التحميل الان'),
+                                        duration: Duration(seconds: 3),
+                                      ),
+                                    );
+                                    await cubit.uploadImages();
+                                    cubit.addPropert(
+                                      floor: floorController.text,
+                                      space: spaceController.text,
+                                      view: viewController.text,
+                                      pathRom: pathRomController.text,
+                                      rom: romController.text,
+                                      price: priceController.text,
+                                      city: cityController.text,
+                                      cover: coverController.text,
+                                      street: streetController.text,
+                                      detail: detailController.text,
+                                      person: personController.text,
+                                      images: cubit.urls,
+                                      type:typeController.text,
+                                      date:DateController.text,
+                                      imageFolderName:cubit.imageFolderName,
+                                    );
 
-                          text: 'اضافه',
+                                  }
+                                },
+                                text: 'اضافه'
+                            ),
+                            fallback: (context)=>Center(child: CircularProgressIndicator(),)
                         ),
 
 
@@ -409,6 +495,10 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
           ),
         ),
       ),
+    );
+
+}
+)
     );
   }
 }

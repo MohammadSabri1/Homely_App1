@@ -22,7 +22,9 @@ class HomelyRegisterCubit extends Cubit<HomelyRegisterStates>
     required String date,
     required String street,
 
-}){
+}
+)
+   {
 emit(HomelyRegisterLoadingState());
 FirebaseAuth.instance.createUserWithEmailAndPassword(
     email: email,
