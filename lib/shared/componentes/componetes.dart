@@ -46,7 +46,7 @@ Widget  defaultTextFormField({
 
 Widget defaultButton( {
   double width = double.infinity,
-  Color background = Colors.deepOrangeAccent,
+  Color background = Colors.deepOrange,
   bool isUpperCase = true,
   double radius = 3.0,
   required Function() function,

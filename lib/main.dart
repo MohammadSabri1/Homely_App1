@@ -12,10 +12,12 @@ import 'interFace/welcome.dart';
 import 'layout/admin_home/admin_home-screen.dart';
 import 'layout/home_screen.dart';
 import 'layout/testHome.dart';
+import 'modules/Add_Property/Add_propertiy.dart';
 import 'modules/login_screen/login_screen.dart';
+import 'modules/profile/profile_screen.dart';
 import 'modules/search/search_screen.dart';
 
-void main() async{
+ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -102,7 +104,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ) ,
                 debugShowCheckedModeBanner: false,
-                home:welcome(),
+                home:AddScreen(),
 
                 //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
               );

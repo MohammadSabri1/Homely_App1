@@ -18,23 +18,8 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
 
-  List<XFile> _images = [];
-  Future<void> _pickImages() async {
-    final _picker = ImagePicker();
-    final _pickedFiles = await _picker.pickMultiImage();
-    // Limit the number of images to select
-    if (_pickedFiles != null) {
-      setState(() {
-        _images.addAll(_pickedFiles.map((file) => file));
-      });
-    }
-  }
-  void imagePicker()async{
-    var image=await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      _images=image as List<XFile>;
-    });
-  }
+
+
   TextEditingController cityController =TextEditingController();
   TextEditingController coverController =TextEditingController();
   TextEditingController streetController =TextEditingController();
@@ -60,6 +45,7 @@ class _AddScreenState extends State<AddScreen> {
           }
         },
           builder: (context,state){
+            var cubit=HomelyAddPropertyCubit.get(context);
           return Scaffold(
           // appBar: AppBar(
           //   centerTitle: true,
@@ -308,7 +294,7 @@ class _AddScreenState extends State<AddScreen> {
           children: [
           IconButton(
           onPressed: () async {
-          _pickImages();
+             cubit. pickImages();
           },
 
           icon: Icon(Icons.add_photo_alternate_outlined,size: 30,),
@@ -331,17 +317,17 @@ class _AddScreenState extends State<AddScreen> {
           controller: pageViewController,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: _images.length,
+          itemCount:cubit.listImagesGallery.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10.0,
           mainAxisSpacing: 20.0,
     ),
     itemBuilder: (context, index) {
-    if (_images[index].path != null) {
+    if (cubit.listImagesGallery[index].path != null) {
     return Stack(  // Use another Stack for image and delete button
     children: [
-    Image.file(File(_images[index].path)),
+    Image.file(File(cubit.listImagesGallery[index].path)),
     Positioned(  // Position the delete button in bottom right corner
     top: 1.0,  // Adjust spacing as needed
 
@@ -350,9 +336,10 @@ class _AddScreenState extends State<AddScreen> {
     iconSize: 24.0,  // Adjust icon size as needed
     color: Colors.orange,  // Customize delete button color
     onPressed: () {
-    setState(() {
-    _images.removeAt(index);  // Remove image from list
-    });
+      setState(() {
+        cubit.listImagesGallery.removeAt(index);
+      });
+     // Remove image from list
     },
     ),
     ),
@@ -387,28 +374,29 @@ class _AddScreenState extends State<AddScreen> {
     ),
     ),
     SizedBox(height: 20.0,),
-    defaultButton(
-    background: Colors.deepOrangeAccent,
-    function: (){
-    if(formKey.currentState!.validate()){
-      HomelyAddPropertyCubit.get(context).addPropert(
-          floor: floorController.text,
-          space: spaceController.text,
-          view: viewController.text,
-          pathRom: pathRomController.text,
-          rom: romController.text,
-          price: priceController.text,
-          city: cityController.text,
-          cover: coverController.text,
-          street: streetController.text,
-          detail: detailController.text,
-          person: personController.text
-      );
-    }
-
-    },
-    text: 'اضافه'
-    ),
+            defaultButton(
+                background: Colors.deepOrangeAccent,
+                function: () async {
+                  if (formKey.currentState!.validate()) {
+                    await HomelyAddPropertyCubit.get(context).uploadImages();
+                    HomelyAddPropertyCubit.get(context).addPropert(
+                      floor: floorController.text,
+                      space: spaceController.text,
+                      view: viewController.text,
+                      pathRom: pathRomController.text,
+                      rom: romController.text,
+                      price: priceController.text,
+                      city: cityController.text,
+                      cover: coverController.text,
+                      street: streetController.text,
+                      detail: detailController.text,
+                      person: personController.text,
+                      images: HomelyAddPropertyCubit.get(context).urls,
+                    );
+                  }
+                },
+                text: 'اضافه'
+            ),
 
 
     ],

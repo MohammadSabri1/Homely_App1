@@ -1,5 +1,4 @@
 class AddPorpertyModle {
-  // String? image;
   String? floor;
   String? space;
   String? view;
@@ -11,6 +10,7 @@ class AddPorpertyModle {
   String? street;
   String? detail;
   String? person;
+  List<String>? images; // added images field
 
   AddPorpertyModle({
     this.floor,
@@ -24,36 +24,38 @@ class AddPorpertyModle {
     this.detail,
     this.person,
     this.price,
+    required this.images, // added images parameter
   });
-  AddPorpertyModle.formJson(Map<String,dynamic>josn){
-    cover=josn['cover'];
-    city=josn['city'];
-    street=josn['street'];
-    price=josn['price'];
-    rom=josn['rom'];
-    pathRom=josn['pathRom'];
-    view=josn['view'];
-    space=josn['space'];
-    floor=josn['floor'];
-    person=josn['person'];
-    detail=josn['detail'];
 
+  AddPorpertyModle.fromJson(Map<String, dynamic> json) {
+    cover = json['cover'];
+    city = json['city'];
+    street = json['street'];
+    price = json['price'];
+    rom = json['rom'];
+    pathRom = json['pathRom'];
+    view = json['view'];
+    space = json['space'];
+    floor = json['floor'];
+    person = json['person'];
+    detail = json['detail'];
+    images = json['images'].cast<String>(); // added images field
   }
-  Map<String,dynamic>toMap()
-  {
+
+  Map<String, dynamic> toMap() {
     return {
-      'cover':cover,
-      'city':city,
-      'street':street,
-      'price':price,
-      'rom':rom,
-      'pathRom':pathRom,
-      'view':view,
-      'space':space,
-      'floor':floor,
-      'person':person,
-      'detail':detail,
+      'cover': cover,
+      'city': city,
+      'street': street,
+      'price': price,
+      'rom': rom,
+      'pathRom': pathRom,
+      'view': view,
+      'space': space,
+      'floor': floor,
+      'person': person,
+      'detail': detail,
+      'images': images, // added images field
     };
   }
-
 }

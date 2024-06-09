@@ -12,3 +12,6 @@ class HomelyAddPropertyErrorState extends HomelyAddPropertyStates{
 //   late final String error;
 //   HomelyAddPropertyErrorState(this.error);
 // }
+class HomelyAddPropertyImageSuccessState extends HomelyAddPropertyStates{}
+class HomelyAddPropertyImageErrorState extends HomelyAddPropertyStates{}
+class HomelySelectPropertyImageSuccessState extends HomelyAddPropertyStates{}

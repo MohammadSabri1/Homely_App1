@@ -14,7 +14,7 @@ class Homely_Home extends StatefulWidget {
   State<Homely_Home> createState() => _Homely_HomeState();
 }
 class _Homely_HomeState extends State<Homely_Home> {
-  List siler = [
+  List property = [
     {
       "image": "images/house1.jpg",
       "price": "8000 ج.م/شهر",
@@ -180,11 +180,12 @@ class _Homely_HomeState extends State<Homely_Home> {
             children: [
               Column(children: [
                 GridView.builder(
-                  itemCount: siler.length,
+                  itemCount: property.length,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1, mainAxisExtent: 440.0),
+                      crossAxisCount: 1, mainAxisExtent: 440.0
+                  ),
                   itemBuilder: (context, i) {
                     return InkWell(
                       onTap: () {
@@ -209,7 +210,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                                 ),
                                 width:double.infinity,
                                 child: Image.asset(
-                                  siler[i]["image"],
+                                  property[i]["image"],
                                   fit: BoxFit.cover,
                                   height: 200,
                                 ),
@@ -217,7 +218,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                               const SizedBox(height: 6),
                               Row(
                                 children: [
-                                  Text(siler[i]["date"],
+                                  Text(property[i]["date"],
                                     textAlign: TextAlign.right,style: TextStyle(fontSize: 11.0),),
                                   Spacer(),
                                   Text(
@@ -229,7 +230,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                                 ],
                               ),
                               const SizedBox(height: 10),
-                              Text(siler[i]["price"],
+                              Text(property[i]["price"],
                                   style:
                                   TextStyle( fontSize: 16,fontWeight: FontWeight.bold),
                                   textAlign: TextAlign.right),
@@ -237,7 +238,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text(siler[i]["titel"],
+                                  Text(property[i]["titel"],
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.grey[700]),

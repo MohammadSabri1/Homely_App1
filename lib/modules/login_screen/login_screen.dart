@@ -1,7 +1,6 @@
 import 'package:apphomely/modules/login_screen/cubit_login_screen/LoginCubit.dart';
 import 'package:apphomely/modules/login_screen/cubit_login_screen/States_login_screen/LoginStates.dart';
 import 'package:apphomely/shared/styles/icons.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,12 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../layout/homeApp.dart';
-import '../../layout/home_screen.dart';
 import '../../models/test.dart';
 import '../../shared/componentes/componetes.dart';
-import '../register_screen/register_screen.dart';
-
-
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 

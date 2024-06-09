@@ -9,10 +9,8 @@ import '../modules/login_screen/login_screen.dart';
 import '../modules/register_screen/cubit_reisster/States_login_screen/registerStates.dart';
 import '../modules/register_screen/cubit_reisster/registerCubit.dart';
 import '../shared/componentes/componetes.dart';
-
 class register extends StatelessWidget {
   register({super.key});
-
   var formKey = GlobalKey<FormState>();
   TextEditingController EmailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -27,7 +25,6 @@ class register extends StatelessWidget {
   TextEditingController GenderController = TextEditingController();
   bool passShow = true;
   final _val = "-1";
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
