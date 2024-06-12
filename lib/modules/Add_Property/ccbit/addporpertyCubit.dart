@@ -80,8 +80,8 @@ class HomelyAddPropertyCubit extends Cubit<HomelyAddPropertyStates> {
 
   Future<void> uploadImages() async {
     emit(HomelyAddPropertyImageLoadingState());
-    imageFolderName = DateTime.now().millisecondsSinceEpoch.toString(); // إنشاء اسم مجلد فريد
-    final String folderPath = 'property Images User/$imageFolderName'; // إنشاء مسار المجلد
+    imageFolderName = DateTime.now().millisecondsSinceEpoch.toString();
+    final String folderPath = 'property Images User/$imageFolderName';
 
     for (var image in listImagesGallery) {
       File file = File(image.path);

@@ -19,8 +19,6 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
 
-
-
   TextEditingController cityController =TextEditingController();
   TextEditingController coverController =TextEditingController();
   TextEditingController streetController =TextEditingController();
@@ -46,7 +44,7 @@ class _AddScreenState extends State<AddScreen> {
           }
         },
           builder: (context,state){
-            var cubit=HomelyAddPropertyCubit.get(context);
+          var cubit=HomelyAddPropertyCubit.get(context);
           return Scaffold(
           // appBar: AppBar(
           //   centerTitle: true,
@@ -295,7 +293,7 @@ class _AddScreenState extends State<AddScreen> {
           children: [
           IconButton(
           onPressed: () async {
-             cubit. pickImages();
+          cubit.pickImages();
           },
 
           icon: Icon(Icons.add_photo_alternate_outlined,size: 30,),
@@ -318,7 +316,7 @@ class _AddScreenState extends State<AddScreen> {
           controller: pageViewController,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount:cubit.listImagesGallery.length,
+          itemCount: cubit.listImagesGallery.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10.0,
@@ -329,18 +327,17 @@ class _AddScreenState extends State<AddScreen> {
     return Stack(  // Use another Stack for image and delete button
     children: [
     Image.file(File(cubit.listImagesGallery[index].path)),
-    Positioned(  // Position the delete button in bottom right corner
-    top: 1.0,  // Adjust spacing as needed
+    Positioned(
+    top: 1.0,
 
     child: IconButton(
     icon: Icon(Icons.close),
     iconSize: 24.0,  // Adjust icon size as needed
     color: Colors.orange,  // Customize delete button color
     onPressed: () {
-      setState(() {
-        cubit.listImagesGallery.removeAt(index);
-      });
-     // Remove image from list
+    setState(() {
+      cubit.listImagesGallery.removeAt(index);  // Remove image from list
+    });
     },
     ),
     ),
@@ -376,19 +373,13 @@ class _AddScreenState extends State<AddScreen> {
     ),
     SizedBox(height: 20.0,),
             ConditionalBuilder(
-                condition: state is! HomelyAddPropertyLoadingState,
+                condition: state is! HomelyAddPropertyImageLoadingState,
                 builder:(context)=>defaultButton(
                     background: Colors.deepOrangeAccent,
                     function: () async {
                       if (formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('برجاء الانتظار يتم التحميل الان'),
-                            duration: Duration(seconds: 3),
-                          ),
-                        );
-                        await HomelyAddPropertyCubit.get(context).uploadImages();
-                        HomelyAddPropertyCubit.get(context).addPropert(
+                        await cubit.uploadImages();
+                        cubit.addPropert(
                           floor: floorController.text,
                           space: spaceController.text,
                           view: viewController.text,
@@ -401,15 +392,15 @@ class _AddScreenState extends State<AddScreen> {
                           detail: detailController.text,
                           person: personController.text,
                           images: cubit.urls,
-                          imageFolderName:cubit.imageFolderName, // added folderName parameter
+                          imageFolderName:cubit.imageFolderName,
                         );
+
                       }
                     },
                     text: 'اضافه'
                 ),
                 fallback: (context)=>Center(child: CircularProgressIndicator(),)
             ),
-
 
 
     ],

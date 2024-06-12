@@ -58,8 +58,8 @@ class AddPorpertyModle {
       'floor': floor,
       'person': person,
       'detail': detail,
-      'images': images, // added images field
-      'imageFolderName': imageFolderName, // added folderName field
+      'images': images,
+      'imageFolderName': imageFolderName,
     };
   }
 }
