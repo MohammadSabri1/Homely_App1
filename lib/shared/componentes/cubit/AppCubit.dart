@@ -8,8 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../layout/home_screen.dart';
+import '../../../layout/testHome.dart';
+import '../../../layout/test_home.dart';
 import '../../../models/omelt_model.dart';
 import '../../../modules/Add_Property/Add_propertiy.dart';
+import '../../../modules/admin_home/admin_home-screen.dart';
 import '../../../modules/profile/profile_screen.dart';
 import '../States/AppStates.dart';
 import '../componetes.dart';
@@ -22,7 +25,8 @@ class HomelyCubit extends Cubit<HomelyStates>
   List<Widget>Screens=[
     profileScreen(),
     AddScreen(),
-    Homely_Home(),
+    testHomeAddProperty(),
+    adminHomeScreen()
   ];
 
   int currentIndex=2;
@@ -38,6 +42,10 @@ class HomelyCubit extends Cubit<HomelyStates>
     BottomNavigationBarItem(
         icon:Icon(IconBroken.Home),
         label: 'home'
+    ),
+    BottomNavigationBarItem(
+        icon:Icon(IconBroken.Paper_Download),
+        label: 'add admin'
     ),
   ];
   void changeBottomBar(int index){

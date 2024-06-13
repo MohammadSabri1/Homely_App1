@@ -13,6 +13,7 @@ import 'layout/home_screen.dart';
 import 'layout/testHome.dart';
 import 'modules/Add_Property/Add_propertiy.dart';
 import 'modules/admin_home/admin_home-screen.dart';
+import 'modules/admin_home/cubit/admin_cubit.dart';
 import 'modules/login_screen/login_screen.dart';
 import 'modules/profile/profile_screen.dart';
 import 'modules/search/search_screen.dart';
@@ -59,57 +60,67 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-    // ..getUserDada()
-        create: (BuildContext context) => HomelyCubit(),
-        child: BlocConsumer<HomelyCubit,HomelyStates>(
-            listener: (context,state){
-
-            },
-            builder: (context,state){
-              return  MaterialApp(
-                theme:ThemeData(
-                  fontFamily: 'Cairo_font',
-                  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                    type: BottomNavigationBarType.fixed,
-                    selectedItemColor: Colors.teal,
-                    backgroundColor: Colors.grey[100],
-                    elevation: 20.0,
-                  ),
-                  scaffoldBackgroundColor: Colors.white,
-                  appBarTheme: AppBarTheme(
-                    systemOverlayStyle: SystemUiOverlayStyle(
-                      //uptate bar tiem
+    return MultiBlocProvider(
+      providers:[
+        BlocProvider(
+          create: (BuildContext context) => HomelyCubit(),
+          child: BlocConsumer<HomelyCubit,HomelyStates>(
+              listener: (context,state){
+              },
+              builder: (context,state){
+                return  MaterialApp(
+                  theme:ThemeData(
+                    fontFamily: 'Cairo_font',
+                    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                      type: BottomNavigationBarType.fixed,
+                      selectedItemColor: Colors.teal,
+                      backgroundColor: Colors.grey[100],
+                      elevation: 20.0,
                     ),
+                    scaffoldBackgroundColor: Colors.white,
+                    appBarTheme: AppBarTheme(
+                      systemOverlayStyle: SystemUiOverlayStyle(
+                        //uptate bar tiem
+                      ),
 
-                    color: Colors.white,
-                    elevation: 0.0,
-                  ),
-                ),
-                darkTheme:ThemeData(
-                  scaffoldBackgroundColor:HexColor('333739'),
-                  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                    type: BottomNavigationBarType.fixed,
-                    selectedItemColor: Colors.deepOrange,
-                    backgroundColor: Colors.grey[100],
-                    elevation: 20.0,
-                  ),
-                  appBarTheme: AppBarTheme(
-                    systemOverlayStyle: SystemUiOverlayStyle(
-
+                      color: Colors.white,
+                      elevation: 0.0,
                     ),
-
-                    color: Colors.white,
-                    elevation: 0.0,
                   ),
-                ) ,
-                debugShowCheckedModeBanner: false,
-                home:AddScreen(),
+                  darkTheme:ThemeData(
+                    scaffoldBackgroundColor:HexColor('333739'),
+                    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                      type: BottomNavigationBarType.fixed,
+                      selectedItemColor: Colors.deepOrange,
+                      backgroundColor: Colors.grey[100],
+                      elevation: 20.0,
+                    ),
+                    appBarTheme: AppBarTheme(
+                      systemOverlayStyle: SystemUiOverlayStyle(
 
-                //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
-              );
-            }
-        )
+                      ),
+
+                      color: Colors.white,
+                      elevation: 0.0,
+                    ),
+                  ) ,
+                  debugShowCheckedModeBanner: false,
+                  home:adminHomeScreen(),
+
+                  //  FirebaseAuth.instance.currentUser==null? LoginScreen():HomeScreen(),
+                );
+              }
+          )
+      ),
+        BlocProvider(
+          create: (BuildContext context)=>AdmainAddPropertyCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        // This is not needed, you can remove it
+        // home: HomeScreen(),
+      ),
     );
+
   }
 }

@@ -1,8 +1,8 @@
-abstract class amainAddPropertyStates{}
-class amainAddPropertyInitialState extends amainAddPropertyStates{}
-class amainAddPropertyLoadingState extends amainAddPropertyStates{}
-class amainAddPropertySuccessState extends amainAddPropertyStates{}
-class amainAddPropertyErrorState extends amainAddPropertyStates{
+abstract class admainAddPropertyStates{}
+class amainAddPropertyInitialState extends admainAddPropertyStates{}
+class amainAddPropertyLoadingState extends admainAddPropertyStates{}
+class amainAddPropertySuccessState extends admainAddPropertyStates{}
+class amainAddPropertyErrorState extends admainAddPropertyStates{
   late final String error;
   amainAddPropertyErrorState(this.error);
 }
@@ -12,7 +12,9 @@ class amainAddPropertyErrorState extends amainAddPropertyStates{
 //   late final String error;
 //   HomelyAddPropertyErrorState(this.error);
 // }
-class amainAddPropertyImageSuccessState extends amainAddPropertyStates{}
-class amainAddPropertyImageErrorState extends amainAddPropertyStates{}
-class amainSelectPropertyImageSuccessState extends amainAddPropertyStates{}
-class amainAddPropertyImageLoadingState extends amainAddPropertyStates{}
+class amainAddPropertyImageSuccessState extends admainAddPropertyStates{}
+class amainAddPropertyImageErrorState extends admainAddPropertyStates{}
+class amainSelectPropertyImageSuccessState extends admainAddPropertyStates{}
+class amainAddPropertyImageLoadingState extends admainAddPropertyStates{}
+class amainAddPropertySuccesspublishState extends admainAddPropertyStates{}
+class amainAddPropertyErrorpublishState extends admainAddPropertyStates{}

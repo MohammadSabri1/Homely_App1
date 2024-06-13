@@ -9,10 +9,11 @@ import '../../../models/admin/add_property.dart';
 import 'admin_states.dart';
 
 
-class amainAddPropertyCubit extends Cubit<amainAddPropertyStates> {
-  amainAddPropertyCubit() :super(amainAddPropertyInitialState());
+class AdmainAddPropertyCubit extends Cubit<admainAddPropertyStates> {
+  AdmainAddPropertyCubit() :super(amainAddPropertyInitialState());
+  static AdmainAddPropertyCubit get(context) => BlocProvider.of(context);
 
-  static amainAddPropertyCubit get(context) => BlocProvider.of(context);
+
   List<XFile> listImagesGallery = [];
   List<String> urls = [];
   String? imageFolderName;
@@ -95,6 +96,53 @@ class amainAddPropertyCubit extends Cubit<amainAddPropertyStates> {
       emit(amainAddPropertyErrorState(e.toString()));
     });
   }
+List<adminAddPorpertyModle> dataAdminProperty=[];
+  Future<void> getDataProperty() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore
+          .instance.collection("Add Property Admin").get();
+      print('QuerySnapshot: $querySnapshot');
+      dataAdminProperty.clear(); // مسح القائمة قبل إضافة البيانات الجديدة
+      querySnapshot.docs.forEach((document) {
+        print('Document: $document');
+        if (document.data() is Map<dynamic, dynamic>) {
+          adminAddPorpertyModle model = adminAddPorpertyModle.fromMap(document.data() as Map<String, dynamic>);
+          dataAdminProperty.add(model);
+          print('Added model to dataAdminProperty: $model');
+        } else {
+          print("خطأ: بيانات الوثيقة ليست خريطة");
+        }
+      });
+      print('DataAdminProperty: $dataAdminProperty');
+      emit(amainAddPropertySuccesspublishState());
+    } catch (e) {
+      emit(amainAddPropertyErrorpublishState());
+    }
+  }
+
+
+
+  // Future<List<adminAddPorpertyModle>> getPreviousProperties() async {
+  //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  //   final QuerySnapshot snapshot = await _firestore
+  //       .collection('properties')
+  //       .orderBy('date', descending: true)
+  //       .limit(10) // جلب 10 عناصر سابقه
+  //       .get();
+  //
+  //   List<adminAddPorpertyModle> previousProperties = [];
+  //
+  //   snapshot.docs.forEach((document) {
+  //     if (document.data() is Map<dynamic, dynamic>) {
+  //       adminAddPorpertyModle property = adminAddPorpertyModle.fromMap(document.data() as Map<dynamic, dynamic>);
+  //       previousProperties.add(property);
+  //     } else {
+  //       print("Error: document data is not a Map");
+  //     }
+  //   });
+  //
+  //   return previousProperties;
+  // }
 }
 
 

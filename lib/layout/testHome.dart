@@ -97,7 +97,7 @@ class testHome extends StatelessWidget {
                               ),
                               width:double.infinity,
                               child: Image.asset(
-                                siler[i]["image"],
+                                siler[i],
                                 fit: BoxFit.cover,
                                 height: 200,
                               ),

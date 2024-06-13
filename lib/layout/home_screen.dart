@@ -189,6 +189,7 @@ class _Homely_HomeState extends State<Homely_Home> {
                   itemBuilder: (context, i) {
                     return InkWell(
                       onTap: () {
+
                       },
                       child: Card(
                         color: Colors.white,
