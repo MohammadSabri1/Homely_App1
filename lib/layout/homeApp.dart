@@ -1,3 +1,4 @@
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:apphomely/shared/styles/icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../modules/search/search_screen.dart';
 import '../modules/login_screen/login_screen.dart';
+import '../modules/register_screen/cubit_reisster/States_login_screen/registerStates.dart';
+import '../modules/register_screen/cubit_reisster/registerCubit.dart';
 import '../shared/componentes/States/AppStates.dart';
 import '../shared/componentes/componetes.dart';
 import '../shared/componentes/cubit/AppCubit.dart';
@@ -14,7 +17,7 @@ import '../shared/componentes/cubit/AppCubit.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController UserController =TextEditingController();
   var formKey=GlobalKey<FormState>();
 
@@ -22,10 +25,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomelyCubit, HomelyStates>(
-        listener: ( BuildContext context, HomelyStates state)
+    return BlocConsumer<HomelyRegisterCubit, HomelyRegisterStates>(
+        listener: ( BuildContext context, HomelyRegisterStates state)
     {},
-    builder: (BuildContext context,HomelyStates state)
+    builder: (BuildContext context,HomelyRegisterStates state)
     {
     var cubit=HomelyCubit.get(context);
     return Scaffold(
@@ -108,64 +111,12 @@ class HomeScreen extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
     MaterialButton(
-    onPressed:(){
-
-      showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height:200.0 ,
-            color: Colors.grey[150],
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon:Icon(IconBroken.Shield_Done),
-                      ),
-
-                      Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon:Icon(IconBroken.Close_Square),
-                      ),
-                    ],
-                  ),
-                  Center(
-                    child: Text(
-                      'تواصل معنا',
-                      style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20.0,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('+201223570789',
-                            style:TextStyle(
-                              fontSize: 16.0
-                            ) ,),
-                          SizedBox(width: 10.0,),
-                          Icon(IconBroken.Call_Missed)
-                        ],
-                      )
-                ],
-              ),
-            ),
-
-          );
-        },
-      );
+        onPressed: () async {
+    final intent = AndroidIntent(
+    action: 'android.intent.action.DIAL',
+    data: 'tel:+201223570789',
+    );
+    await intent.launch();
     },child: Text('تواصل معنا',
     style: TextStyle(
     fontWeight: FontWeight.bold,
@@ -186,7 +137,7 @@ class HomeScreen extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return Container(
-                    height: MediaQuery.of(context).size.height ,
+                    height: MediaQuery.of(context).size.height,
                     color: Colors.grey[150],
                     child: Form(
                       key: formKey,
@@ -198,17 +149,20 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 IconButton(
                                   onPressed: () {
+                                    HomelyRegisterCubit.get(context).SuggesAndComplain(
+                                      uid: uid,
+                                      SuggesAndComplain: UserController.text,
+                                    );
                                     Navigator.of(context).pop();
                                   },
-                                  icon:Icon(IconBroken.Shield_Done),
+                                  icon: Icon(IconBroken.Shield_Done),
                                 ),
-
                                 Spacer(),
                                 IconButton(
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  icon:Icon(IconBroken.Close_Square),
+                                  icon: Icon(IconBroken.Close_Square),
                                 ),
                               ],
                             ),
@@ -216,29 +170,28 @@ class HomeScreen extends StatelessWidget {
                               child: Text(
                                 'مقترحات و شكوي ',
                                 style: TextStyle(
-                                    fontSize: 18.0,
-                                  fontWeight: FontWeight.bold
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                             SizedBox(height: 20.0,),
                             defaultTextFormField(
-                              controller: UserController,
-                              type: TextInputType.emailAddress,
-                              validator: (value){
-                                if (value!.isEmpty){
-                                  return'فارغ من فضلك اكتب';
-                                }
-                                return null;
-                              },
-                              label: 'مقترحات و شكوي',
-                              prefixIcon: IconBroken.Message
+                                controller: UserController,
+                                type: TextInputType.emailAddress,
+                                validator: (value){
+                                  if (value!.isEmpty){
+                                    return'فارغ من فضلك اكتب';
+                                  }
+                                  return null;
+                                },
+                                label: 'مقترحات و شكوي',
+                                prefixIcon: IconBroken.Message
                             ),
                           ],
                         ),
                       ),
                     ),
-
                   );
                 },
               );

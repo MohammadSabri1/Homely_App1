@@ -219,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             TextButton(onPressed: (){
                               navigatorTo(context, register());
-                            }, child: Text('انشاء حساب'),
+                            }, child: Text('انشاء حساب',style:TextStyle(fontSize: 16.0),),
                             ),
                           ],
                         )

@@ -18,3 +18,4 @@ class amainSelectPropertyImageSuccessState extends admainAddPropertyStates{}
 class amainAddPropertyImageLoadingState extends admainAddPropertyStates{}
 class amainAddPropertySuccesspublishState extends admainAddPropertyStates{}
 class amainAddPropertyErrorpublishState extends admainAddPropertyStates{}
+class AddPropertyreFreshDataState extends admainAddPropertyStates{}

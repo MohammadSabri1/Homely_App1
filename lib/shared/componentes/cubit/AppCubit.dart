@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../layout/home_screen.dart';
 import '../../../layout/testHome.dart';
 import '../../../layout/test_home.dart';
-import '../../../models/omelt_model.dart';
+import '../../../models/users_model.dart';
 import '../../../modules/Add_Property/Add_propertiy.dart';
 import '../../../modules/admin_home/admin_home-screen.dart';
 import '../../../modules/profile/profile_screen.dart';
@@ -23,7 +23,7 @@ class HomelyCubit extends Cubit<HomelyStates>
 
   static HomelyCubit get(context)=>BlocProvider.of(context);
   List<Widget>Screens=[
-    profileScreen(),
+    ProfileScreen(),
     AddScreen(),
     testHomeAddProperty(),
     adminHomeScreen()
@@ -54,6 +54,9 @@ class HomelyCubit extends Cubit<HomelyStates>
 
   }
   homelyUsersModle? Model ;
+
+
+
 
   // void getUserDada(){
   //   emit(HomelyGetUserLoadingState());

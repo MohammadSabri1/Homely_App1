@@ -64,6 +64,8 @@ dependencies:
   vm_service: ^14.2.1
   flutter_rating_bar: ^4.0.1
   firebase_app_check: ^0.2.2+7
+  device_info_plus: ^10.1.0
+  android_intent_plus: ^5.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

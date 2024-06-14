@@ -121,7 +121,10 @@ List<adminAddPorpertyModle> dataAdminProperty=[];
     }
   }
 
-
+  Future<void> refreshData() async {
+    await getDataProperty();
+    emit(AddPropertyreFreshDataState());
+  }
 
   // Future<List<adminAddPorpertyModle>> getPreviousProperties() async {
   //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

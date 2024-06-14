@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../layout/homeApp.dart';
 import '../layout/home_screen.dart';
 import '../modules/login_screen/login_screen.dart';
 import '../modules/register_screen/cubit_reisster/States_login_screen/registerStates.dart';
@@ -45,7 +46,7 @@ class register extends StatelessWidget {
               // ).show();
             }
             if (state is HomelyCreateUseSuccessState) {
-              pushAndRemoveUntil(context, Homely_Home());
+              pushAndRemoveUntil(context, HomeScreen());
             }
           }, builder: (context, state) {
         return Scaffold(
@@ -282,6 +283,7 @@ class register extends StatelessWidget {
                                     date: DateController.text,
                                     cover: coveController.text,
                                     phone: PhoneController.text,
+
                                   );
                                   // pushAndRemoveUntil(context,Homely_Home() );
                                 }
@@ -307,7 +309,7 @@ class register extends StatelessWidget {
                             child: Text(
                               'تسجيل دخول',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16.0),
+                                    fontSize: 16.0),
                             ),
                           ),
                         ],

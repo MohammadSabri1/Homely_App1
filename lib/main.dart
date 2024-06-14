@@ -11,11 +11,13 @@ import 'firebase_options.dart';
 import 'interFace/welcome.dart';
 import 'layout/home_screen.dart';
 import 'layout/testHome.dart';
+import 'models/test.dart';
 import 'modules/Add_Property/Add_propertiy.dart';
 import 'modules/admin_home/admin_home-screen.dart';
 import 'modules/admin_home/cubit/admin_cubit.dart';
 import 'modules/login_screen/login_screen.dart';
 import 'modules/profile/profile_screen.dart';
+import 'modules/register_screen/cubit_reisster/registerCubit.dart';
 import 'modules/search/search_screen.dart';
 
  void main() async{
@@ -23,6 +25,7 @@ import 'modules/search/search_screen.dart';
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   // await cacheHelper.init();
   // Widget widget;
   //  uid = cacheHelper.getData(key: 'uid') ;
@@ -66,7 +69,10 @@ class _MyAppState extends State<MyApp> {
           create: (BuildContext context) => HomelyCubit(),
         ),
         BlocProvider(
-          create: (BuildContext context) => AdmainAddPropertyCubit(),
+          create: (BuildContext context) => AdmainAddPropertyCubit()..getDataProperty(),
+        ),
+        BlocProvider<HomelyRegisterCubit>(
+          create: (context) => HomelyRegisterCubit()..getUserData(),
         ),
       ],
       child: BlocConsumer<HomelyCubit, HomelyStates>(

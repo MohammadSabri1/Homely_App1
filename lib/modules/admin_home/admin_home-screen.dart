@@ -333,11 +333,11 @@ class _adminHomeScreenState extends State<adminHomeScreen> {
                               type: TextInputType.datetime,
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'برجاء ادخل تاريخ الملاد';
+                                  return 'برجاء ادخل تاريخ الاضافه';
                                 }
                                 return null;
                               },
-                              label: 'تاريخ الملاد',
+                              label: 'تاريخ الاضافه',
                               prefixIcon: Icons.calendar_month_outlined,
                               onTab: () {
                                 showDatePicker(

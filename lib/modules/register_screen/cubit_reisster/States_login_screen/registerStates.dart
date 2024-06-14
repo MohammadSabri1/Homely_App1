@@ -13,3 +13,9 @@ class HomelyCreateUserErrorState extends HomelyRegisterStates{
   HomelyCreateUserErrorState(this.error);
 }
 class HomelyLoginChangePasswordState extends HomelyRegisterStates{}
+class SuccesspublishUserState extends HomelyRegisterStates{}
+class ErrorpublishUserState extends HomelyRegisterStates{}
+class SuggesAndComplainModelUseSuccessState extends HomelyRegisterStates{}
+class SuggesAndComplainModelUserErrorState extends HomelyRegisterStates{}
+class HomelyBottomNaveState extends HomelyRegisterStates{}
+class SuggesAndComplainModelUserIsEmptyState extends HomelyRegisterStates{}

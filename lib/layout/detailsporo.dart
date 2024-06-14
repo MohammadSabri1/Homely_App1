@@ -1,9 +1,12 @@
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/admin/add_property.dart';
 import '../modules/admin_home/cubit/admin_cubit.dart';
 import '../modules/admin_home/cubit/admin_states.dart';
+import '../shared/styles/Styles.dart';
 
 class detalsProperty extends StatefulWidget {
   final date;
@@ -34,7 +37,7 @@ class _itemstetestate extends State<detalsProperty> {
                   return Container(
                     width: MediaQuery.of(context).size.width, // عرض ثابت
                     height: 200,
-                    margin: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(3),
                     child: Image.network(
                       widget.property.images?[index] ?? '',
                       fit: BoxFit.cover,
@@ -87,7 +90,7 @@ class _itemstetestate extends State<detalsProperty> {
             SizedBox(height: 16.0,),
             Container(
               width: double.infinity,
-              height:290 ,
+              height:400 ,
               child: Card(
                    color: Colors.grey[200],
                 child: Padding(
@@ -103,7 +106,11 @@ class _itemstetestate extends State<detalsProperty> {
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        '   المساحه   ${widget.property.space ?? ' '}',
+                        '  النوع  ${widget.property.type ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '   المساحه   ${widget.property.space ?? ' '} م',
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
@@ -112,10 +119,6 @@ class _itemstetestate extends State<detalsProperty> {
                       ),
                       Text(
                         '  الاطلاله   ${widget.property.view ?? ' '}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        '  النوع  ${widget.property.type ?? ' '}',
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
@@ -134,8 +137,51 @@ class _itemstetestate extends State<detalsProperty> {
                         '   تعليق ${widget.property.detail ?? ' '}',
                         style: TextStyle(fontSize: 16),
                       ),
-
-
+                      SizedBox(height: 30.0,),
+                      Row(
+                        children: [
+                          Container(
+                              width: 140.0,
+                              decoration: const BoxDecoration(
+                                color: defaultColor,
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(20.0)),
+                              ),
+                              child: TextButton(
+                                onPressed: () async {
+                                  const whatsappUrl = 'https://wa.me/+201223570789?text=مرحبا هل مذال متوفر';
+                                  await launchUrl(Uri.parse(whatsappUrl), mode: LaunchMode.externalApplication);
+                                },
+                                child: Icon(
+                                  Icons.chat,
+                                  color: Colors.white,
+                                ),
+                              )
+                          ),
+                          Spacer(),
+                          Container(
+                            width: 140.0,
+                            decoration: const BoxDecoration(
+                              color: defaultColor,
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(20.0)),
+                            ),
+                            child: TextButton(
+                              onPressed: () async {
+                                final intent = AndroidIntent(
+                                  action: 'android.intent.action.DIAL',
+                                  data: 'tel:+201223570789',
+                                );
+                                await intent.launch();
+                              },
+                              child: Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
 
                     ],
                   ),
