@@ -1,162 +1,153 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class itemsdetals extends StatefulWidget {
+import '../models/admin/add_property.dart';
+import '../modules/admin_home/cubit/admin_cubit.dart';
+import '../modules/admin_home/cubit/admin_states.dart';
+
+class detalsProperty extends StatefulWidget {
   final date;
+  final adminAddPorpertyModle property;
 
-  itemsdetals({super.key, this.date});
-
-  List detals = [
-    {
-      "thespce": "190",
-      "tyep": "شاليه",
-      "rom": "3",
-      "floor": "الاول",
-      "adress": "الساحل الشمالي اول مراسي بعد البنزينه يمين"
-    },
-    {
-      "thespce": "190",
-      "tyep": "شاليه",
-      "rom": "3",
-      "floor": "الاول",
-      "adress": "الساحل الشمالي اول مراسي بعد البنزينه يمين"
-    },
-    {
-      "thespce": "190",
-      "tyep": "شاليه",
-      "rom": "3",
-      "floor": "الاول",
-      "adress": "الساحل الشمالي اول مراسي بعد البنزينه يمين"
-    },
-    {
-      "thespce": "190",
-      "tyep": "شاليه",
-      "rom": "3",
-      "floor": "الاول",
-      "adress": "الساحل الشمالي اول مراسي بعد البنزينه يمين"
-    },
-    {
-      "thespce": "190",
-      "tyep": "شاليه",
-      "rom": "3",
-      "floor": "الاول",
-      "adress": "الساحل الشمالي اول مراسي بعد البنزينه يمين"
-    },
-  ];
+  detalsProperty({super.key, this.date, required this.property});
 
   @override
-  State<itemsdetals> createState() => _itemstetestate();
+  State<detalsProperty> createState() => _itemstetestate();
 }
 
-class _itemstetestate extends State<itemsdetals> {
+class _itemstetestate extends State<detalsProperty> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-      padding: EdgeInsets.symmetric(horizontal: 13, vertical: 48),
-      children: [
-        Image.asset(widget.date['image']),
-        Container(
-          height: 30,
-        ),
-        Text(widget.date['price'],
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Colors.orange),
-            textAlign: TextAlign.right),
-        Text(widget.date['titel'],
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-            textAlign: TextAlign.right),
-        Text(widget.date['subtitel'],
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            textAlign: TextAlign.right),
-        SizedBox(
-          height: 15,
-        ),
-        Text("_______________________________________________",
-            textAlign: TextAlign.center),
-        SizedBox(
-          height: 15,
-        ),
-        Text("التفاصيل",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            textAlign: TextAlign.center),
-        SizedBox(
-          height: 15,
-        ),
-        Column(
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView(
           children: [
+            // عرض الصور
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 200),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.property.images?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width, // عرض ثابت
+                    height: 200,
+                    margin: EdgeInsets.all(8),
+                    child: Image.network(
+                      widget.property.images?[index] ?? '',
+                      fit: BoxFit.cover,
+                      height: 200,
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 10.0,),
+            Center(
+              child: Text(
+                "  ج.م/شهر${widget.property.price?? ''} ",
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 10.0,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "190 :",
-                  style: TextStyle(fontSize: 18),
+                  widget.property.street?? '',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700],
+                  ),
+                  textAlign: TextAlign.right,
                 ),
-                SizedBox(
-                  width: 10,
-                ),
+                SizedBox(width: 4.0,),
                 Text(
-                  "المساحه: ",
-                  style: TextStyle(fontSize: 18),
+                  widget.property.city?? '',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700],
+                  ),
+                  textAlign: TextAlign.right,
                 ),
-                // Text(widget.date['tyep'],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.orange ),textAlign: TextAlign.right),
+                SizedBox(width: 4.0,),
+                Text(
+                  widget.property.cover ?? '',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(width: 4.0,),
+                Icon(
+                  Icons.location_on_outlined,
+                  size: 15,
+                ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "3 :",
-                  style: TextStyle(fontSize: 18),
+            SizedBox(height: 16.0,),
+            Container(
+              width: double.infinity,
+              height:290 ,
+              child: Card(
+                   color: Colors.grey[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text('الوصف',style: TextStyle(
+                          fontSize: 18,fontWeight: FontWeight.bold),),
+                      SizedBox(height: 10.0,),
+                      Text(
+                       '${ widget.property.date ?? ' '}  تاريخ الاضافه ',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '   المساحه   ${widget.property.space ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '  الدور   ${widget.property.floor ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '  الاطلاله   ${widget.property.view ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '  النوع  ${widget.property.type ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '  عدد الغرف  ${widget.property.rom ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '  عدد الحمام  ${widget.property.pathRom ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '   عدد المرافقين  ${widget.property.person ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '   تعليق ${widget.property.detail ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+
+
+
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "عد الغرف: ",
-                  style: TextStyle(fontSize: 18),
-                ),
-                // Text(widget.date['tyep'],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.orange ),textAlign: TextAlign.right),
-              ],
+
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "شاليه",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "النوع: ",
-                  style: TextStyle(fontSize: 18),
-                ),
-                // Text(widget.date['tyep'],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.orange ),textAlign: TextAlign.right),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  "ىنسيكتكمتكمكبمكبمظ :",
-                  style: TextStyle(fontSize: 18),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  "العنوان مفصل: ",
-                  style: TextStyle(fontSize: 18),
-                ),
-                // Text(widget.date['tyep'],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.orange ),textAlign: TextAlign.right),
-              ],
-            ),
+
+
           ],
         ),
-      ],
-    ));
+      ),
+    );
   }
 }

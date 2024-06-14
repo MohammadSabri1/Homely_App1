@@ -101,6 +101,7 @@ List<adminAddPorpertyModle> dataAdminProperty=[];
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore
           .instance.collection("Add Property Admin").get();
+      print(dataAdminProperty.map((e) => e.toString()).join(', '));
       print('QuerySnapshot: $querySnapshot');
       dataAdminProperty.clear(); // مسح القائمة قبل إضافة البيانات الجديدة
       querySnapshot.docs.forEach((document) {

@@ -49,7 +49,7 @@ class adminAddPorpertyModle {
       type: map['type'],
       date: map['date'],
       imageFolderName: map['imageFolderName'],
-      images: map['images'].cast<String>(),
+        images: List<String>.from(map['images'])
     );
   }
 
