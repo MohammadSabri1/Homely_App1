@@ -20,17 +20,17 @@ class testHomeAddProperty extends StatefulWidget {
 
 class _testHomeAddPropertyState extends State<testHomeAddProperty> {
   PageController boardController = PageController();
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AdmainAddPropertyCubit, admainAddPropertyStates>(
       listener: (context, state) {}, // remove this if not used
       builder: (BuildContext context, state) {
         var cubit = AdmainAddPropertyCubit.get(context);
+        List<adminAddPorpertyModle> reversedList = cubit.dataAdminProperty.reversed.toList();
         cubit.getDataProperty();
         return Scaffold(
           body: GridView.builder(
-            itemCount: cubit.dataAdminProperty.length,
+            itemCount: reversedList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1, // عدد الأعمدة في الشبكة
               crossAxisSpacing: 8, // مسافة بين الأعمدة
@@ -40,13 +40,7 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
             itemBuilder: (context, i) {
               return InkWell(
                 onTap: () {
-                  navigatorTo(
-                    context,
-                    detalsProperty(
-                      date: cubit.dataAdminProperty[i].date,
-                      property: cubit.dataAdminProperty[i],
-                    ),
-                  );
+
                 },
                 child: Card(
                   color: Colors.white,
@@ -71,7 +65,7 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
                                 height: 200,
                                 margin: EdgeInsets.all(8),
                                 child: Image.network(
-                                  cubit.dataAdminProperty[i].images?[index]?? '',
+                                  reversedList[i].images?[index]?? '',
                                   fit: BoxFit.cover,
                                   height: 200,
                                 ),
@@ -83,13 +77,13 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
                         Row(
                           children: [
                             Text(
-                              cubit.dataAdminProperty[i].date?? '',
+                              reversedList[i].date?? '',
                               textAlign: TextAlign.right,
                               style: TextStyle(fontSize: 11.0),
                             ),
                             Spacer(),
                             Text(
-                              cubit.dataAdminProperty[i].type?? '',
+                              reversedList[i].type?? '',
                               style: TextStyle(
                                 fontSize: 12.0,
                               ),
@@ -98,7 +92,7 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          "  ج.م/شهر${cubit.dataAdminProperty[i].price?? ''} ",
+                          "  ج.م/شهر${reversedList[i].price?? ''} ",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -110,7 +104,7 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              cubit.dataAdminProperty[i].street?? '',
+                              reversedList[i].street?? '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey[700],
@@ -119,7 +113,7 @@ class _testHomeAddPropertyState extends State<testHomeAddProperty> {
                             ),
                             SizedBox(width: 4.0,),
                             Text(
-                              cubit.dataAdminProperty[i].city?? '',
+                              reversedList[i].city?? '',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey[700],

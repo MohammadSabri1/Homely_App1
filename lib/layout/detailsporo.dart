@@ -103,7 +103,11 @@ class _itemstetestate extends State<detalsProperty> {
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        '   المساحه   ${widget.property.space ?? ' '}',
+                        '  النوع  ${widget.property.type ?? ' '}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        '   المساحه   ${widget.property.space ?? ' '} م',
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
@@ -112,10 +116,6 @@ class _itemstetestate extends State<detalsProperty> {
                       ),
                       Text(
                         '  الاطلاله   ${widget.property.view ?? ' '}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        '  النوع  ${widget.property.type ?? ' '}',
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
